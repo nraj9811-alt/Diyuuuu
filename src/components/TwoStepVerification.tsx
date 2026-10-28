@@ -17,15 +17,47 @@ interface TwoStepVerificationProps {
   onVerificationComplete: () => void;
 }
 
+const PENDING_VERIFICATION_KEY = 'diyu_pending_verification_v1';
+
+interface SavedVerificationState {
+  step: 'details' | 'otp' | 'dob' | 'success';
+  mobileNumber: string;
+  email: string;
+  tempToken: string;
+  emailDelivered: boolean | null;
+  infoMsg: string | null;
+  savedAt: number;
+}
+
+function loadSavedVerification(): SavedVerificationState | null {
+  try {
+    const raw = localStorage.getItem(PENDING_VERIFICATION_KEY);
+    if (!raw) return null;
+    const parsed: SavedVerificationState = JSON.parse(raw);
+    // Valid for 10 minutes (matching backend OTP & tempToken TTL)
+    if (Date.now() - parsed.savedAt > 10 * 60 * 1000) {
+      localStorage.removeItem(PENDING_VERIFICATION_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
 export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVerificationComplete }) => {
-  const [step, setStep] = useState<'details' | 'otp' | 'dob' | 'success'>('details');
-  const [mobileNumber, setMobileNumber] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const savedState = loadSavedVerification();
+
+  const [step, setStep] = useState<'details' | 'otp' | 'dob' | 'success'>(
+    savedState?.step && savedState.step !== 'success' ? savedState.step : 'details'
+  );
+  const [mobileNumber, setMobileNumber] = useState<string>(savedState?.mobileNumber || '');
+  const [email, setEmail] = useState<string>(savedState?.email || '');
   const [otp, setOtp] = useState<string>('');
-  const [tempToken, setTempToken] = useState<string>('');
+  const [tempToken, setTempToken] = useState<string>(savedState?.tempToken || '');
 
   // Email delivery state
-  const [emailDelivered, setEmailDelivered] = useState<boolean | null>(null);
+  const [emailDelivered, setEmailDelivered] = useState<boolean | null>(savedState?.emailDelivered ?? null);
 
   // Date of birth parts - strictly blank, no prefill
   const [dobDay, setDobDay] = useState<string>('');
@@ -34,8 +66,28 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [infoMsg, setInfoMsg] = useState<string | null>(null);
+  const [infoMsg, setInfoMsg] = useState<string | null>(savedState?.infoMsg || null);
   const [cooldown, setCooldown] = useState<number>(0);
+
+  // Persist verification progress so switching to Gmail app & returning never resets the screen
+  useEffect(() => {
+    if (step === 'success') {
+      localStorage.removeItem(PENDING_VERIFICATION_KEY);
+      return;
+    }
+    if (step !== 'details' || mobileNumber || email) {
+      const stateToSave: SavedVerificationState = {
+        step,
+        mobileNumber,
+        email,
+        tempToken,
+        emailDelivered,
+        infoMsg,
+        savedAt: Date.now(),
+      };
+      localStorage.setItem(PENDING_VERIFICATION_KEY, JSON.stringify(stateToSave));
+    }
+  }, [step, mobileNumber, email, tempToken, emailDelivered, infoMsg]);
 
   useEffect(() => {
     let timer: any;
@@ -252,6 +304,8 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               </label>
               <input
                 type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
                 required
                 maxLength={6}
                 autoFocus
@@ -283,6 +337,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
                 <button
                   type="button"
                   onClick={() => {
+                    localStorage.removeItem(PENDING_VERIFICATION_KEY);
                     setStep('details');
                     setOtp('');
                     setErrorMsg(null);

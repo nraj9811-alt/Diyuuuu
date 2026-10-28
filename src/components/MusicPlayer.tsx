@@ -66,6 +66,17 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
     if (!currentTrack) return;
     setAudioError(null);
     setCurrentTime(0);
+    setDuration(currentTrack.duration || 180);
+
+    soundManager.stopTrackSynth();
+
+    if (!currentTrack.isSynthesizedBuiltIn && audioRef.current && currentTrack.audioUrl) {
+      if (audioRef.current.getAttribute('data-track-url') !== currentTrack.audioUrl) {
+        audioRef.current.src = currentTrack.audioUrl;
+        audioRef.current.setAttribute('data-track-url', currentTrack.audioUrl);
+        audioRef.current.load();
+      }
+    }
 
     // If first load, do not autoplay
     if (isInitialMount.current) {
@@ -73,20 +84,13 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
       return;
     }
 
-    soundManager.stopTrackSynth();
-
     if (isPlaying) {
-      soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
-    }
-
-    if (!currentTrack.isSynthesizedBuiltIn && audioRef.current && currentTrack.audioUrl) {
-      audioRef.current.src = currentTrack.audioUrl;
-      audioRef.current.load();
-      if (isPlaying) {
+      if (!currentTrack.isSynthesizedBuiltIn && audioRef.current && currentTrack.audioUrl) {
         audioRef.current.play().catch(() => {
-          // Fallback seamlessly to synth
           soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
         });
+      } else {
+        soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
       }
     }
   }, [currentTrack?.id]);
@@ -98,12 +102,22 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
     if (nextPlay) {
       logAction('music_play', 'Music Player', `Playing: ${currentTrack.title}`);
-      soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
 
       if (!currentTrack.isSynthesizedBuiltIn && audioRef.current && currentTrack.audioUrl) {
+        soundManager.stopTrackSynth();
+        if (audioRef.current.getAttribute('data-track-url') !== currentTrack.audioUrl) {
+          audioRef.current.src = currentTrack.audioUrl;
+          audioRef.current.setAttribute('data-track-url', currentTrack.audioUrl);
+          audioRef.current.load();
+        }
         audioRef.current.play().catch(() => {
           soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
         });
+      } else {
+        if (audioRef.current) {
+          audioRef.current.pause();
+        }
+        soundManager.playTrackSynth(currentTrack.id || currentTrack.playlistId);
       }
     } else {
       soundManager.stopTrackSynth();
