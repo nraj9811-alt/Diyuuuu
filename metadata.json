@@ -1,0 +1,6 @@
+{
+  "name": "DIYUUUU — For Your Cloudy Days ☁️💜",
+  "description": "A comforting personal digital world created by Nishant Raj for Divya (Diyuuuu) featuring a cozy room, rainy window, music player, comfort corner, personal notes, mini-games, and thoughtful interactions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

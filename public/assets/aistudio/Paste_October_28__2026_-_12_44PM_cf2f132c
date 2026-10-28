@@ -1,0 +1,1315 @@
+PROJECT: DIYUUUU — FOR YOUR CLOUDY DAYS ☁️💜
+FINAL MASTER BUILD PROMPT — COMPLETE WEBSITE, ADMIN PANEL, TELEGRAM BOT, MUSIC PLAYER & ALL FEATURES
+You are an expert full-stack developer, UI/UX designer, creative frontend engineer, backend architect, database engineer, and quality-assurance tester.
+Your task is to build a complete, polished, working, responsive, emotionally meaningful personal website titled:
+DIYUUUU — FOR YOUR CLOUDY DAYS ☁️💜
+This website is a personal digital comfort space created by Nishant Raj for Divya, whose affectionate nickname is Diyuuuu.
+This is not supposed to look like a generic template, a school project, a basic landing page, or an ordinary love-letter website. It should feel like a tiny, beautiful digital world made specifically for one person: a cozy room on a cloudy day, with rain outside the window, warm lights, a notebook, a cup of chai, a peaceful forest, soft music, personal memories, little interactive surprises, and comforting words.
+The website should feel thoughtful, personal, immersive, visually polished, and genuinely usable.
+MOST IMPORTANT REQUIREMENT: Build the actual working product, not just a design mockup.
+Do not stop after creating a homepage. Implement the complete website, navigation, interactions, games, music player, administrator dashboard, content management, secure backend integrations, and all required supporting functionality.
+Do not replace working features with fake buttons, placeholder cards, simulated success messages, or nonfunctional interfaces.
+If a feature requires backend infrastructure, implement it properly using the available platform. If a feature cannot be completed because a required external credential or service is missing, create the integration structure, provide clear setup instructions, and disclose what remains unconfigured. Never pretend that an unconfigured feature works.
+ 
+⸻
+ 
+1. CORE IDENTITY AND PERSONALIZATION
+Creator
+* Name: Nishant Raj
+* Role: Creator of the website
+* Personal intention: To create a comforting, thoughtful, interactive digital space for Divya.
+Recipient
+* Name: Divya
+* Preferred nickname: Diyuuuu
+* The nickname must be spelled consistently as Diyuuuu throughout the website.
+* Do not replace the nickname with “DU”.
+* The website should feel personalized to Diyuuuu rather than like a generic website with a name inserted.
+Language and tone
+Use natural Hindi/Hinglish where appropriate, with short English phrases for headings and aesthetic labels.
+Nishant addresses Divya respectfully using “aap”.
+Avoid using “tum”, “tu”, “tera”, “teri”, “tumhara”, and “tumhe” in personalized messages written in Nishant’s voice.
+Use respectful wording such as:
+* “Aap”
+* “Aapke”
+* “Aapko”
+* “Aapki”
+* “Aap jab chahein”
+* “Aapke liye”
+* “Aapka little comfort corner”
+The writing must sound natural, sincere, warm, and emotionally thoughtful. Avoid excessive dramatic declarations, repetitive romantic lines, generic AI-generated quotes, or language that creates guilt or emotional pressure.
+The website should never imply that Divya owes Nishant a reply, affection, attention, or any particular response.
+Optional affectionate nicknames
+Use these sparingly in relevant places:
+* Nishu Patakha
+* Sir Ji
+* Mharo gigalooooooo
+* Babyyyy
+* Pyare lal
+Do not force every nickname into every section. Make nickname usage editable through the administrator panel.
+ 
+⸻
+ 
+2. CREATIVE DIRECTION AND VISUAL DESIGN
+Overall atmosphere
+Create a dreamy, rainy-day, cozy, forest-inspired visual environment.
+Imagine:
+* A cozy room during light rain.
+* A dark green forest outside the window.
+* Soft lavender lighting.
+* A warm desk lamp.
+* A handwritten notebook.
+* A cup of chai.
+* Little floating stars.
+* Rain droplets sliding down a window.
+* A quiet music player.
+* A soft handwritten letter.
+* A small world that feels peaceful rather than overwhelming.
+The visual identity should combine:
+1. Dark forest green.
+2. Lavender and muted purple.
+3. Warm cream.
+4. Soft white.
+5. Charcoal and deep green.
+6. Subtle warm amber for lamp lighting.
+Avoid excessive pink, neon colors, overly saturated gradients, and generic romantic templates.
+Suggested design tokens
+Create reusable CSS variables or design tokens.
+Example palette:
+* Forest Green: #173B32
+* Deep Forest: #102A25
+* Muted Sage: #A7B7A0
+* Lavender: #B8A8D9
+* Soft Lilac: #D8CEEE
+* Warm Cream: #F6F1E8
+* Paper White: #FFFDF8
+* Charcoal: #252A28
+* Warm Amber: #E8B878
+* Soft Grey: #A7AAA8
+These are initial design suggestions. Adjust the shades if needed to achieve a cohesive, premium visual result.
+Typography
+Use a combination of:
+* An elegant serif font for major headings.
+* A readable sans-serif font for body text.
+* A handwritten-style font for personal notes and letters.
+Typography must remain readable on small mobile screens.
+Do not use handwritten fonts for long paragraphs.
+Visual quality requirements
+* Consistent spacing.
+* Beautifully balanced composition.
+* Subtle depth and shadows.
+* Rounded corners used intentionally.
+* Elegant cards and modal windows.
+* Smooth transitions.
+* Proper empty states.
+* High-quality illustrations or original CSS artwork where suitable.
+* No random emojis replacing all design elements.
+* No cluttered interface.
+* No giant headings that break on mobile.
+* No overlapping elements.
+* No horizontal overflow.
+* No unnecessary loading animations.
+* No fake buttons.
+* No inaccessible low-contrast text.
+The website must feel deliberately art-directed.
+ 
+⸻
+ 
+3. TECHNICAL ARCHITECTURE
+Use the best architecture supported by the development environment.
+Preferred structure:
+Frontend
+* React or the framework recommended by the platform.
+* TypeScript where supported.
+* Reusable UI components.
+* Component-based page structure.
+* Responsive CSS.
+* Accessible interactive elements.
+* Clean routing.
+* A consistent design system.
+Backend
+Use a proper backend or serverless functions for features requiring secure server-side operations.
+Possible responsibilities:
+* Administrator authentication.
+* Saving and retrieving website content.
+* Telegram Bot API communication.
+* Music metadata and upload management.
+* Explicitly submitted messages.
+* Optional analytics.
+* Data export and deletion.
+* Administrative settings.
+Database
+Use a persistent database when the platform supports it.
+Possible data entities:
+* Website settings.
+* Content sections.
+* Personal notes.
+* Memory cards.
+* Letter content.
+* Game settings.
+* Music tracks.
+* Playlists.
+* Explicitly submitted answers.
+* Administrator accounts.
+* Consent records.
+* Aggregated analytics.
+* Configurable event dates.
+Do not use mock data as a substitute for persistent functionality.
+Do not assume that browser local storage is a secure database.
+Use local storage only for suitable non-sensitive preferences, such as:
+* Theme selection.
+* Music-player preferences.
+* Completed non-sensitive mini-games.
+* Dismissed introductory prompts.
+Do not store Telegram bot tokens or administrator passwords in browser storage.
+ 
+⸻
+ 
+4. COMPLETE WEBSITE STRUCTURE
+Build a cohesive experience containing the following sections.
+1. Welcome Screen.
+2. Main Cozy Room.
+3. Cloudy-Day Comfort Corner.
+4. Personal Notes and Letters.
+5. Memory Garden.
+6. Interactive Mini-Games.
+7. Music Player.
+8. Rainy Window.
+9. Little Things I Appreciate.
+10. Today’s Little Plan.
+11. Optional Personal Calendar.
+12. Optional Private Reflection Space.
+13. Surprise Envelope.
+14. Settings.
+15. Privacy and Consent.
+16. Hidden Administrator Dashboard.
+Navigation must be clear, functional, and easy to use.
+On mobile, use an elegant bottom navigation bar or a compact navigation menu.
+On desktop, use a carefully designed sidebar, top navigation, or another suitable layout.
+Do not expose the administrator dashboard in the normal visitor navigation.
+ 
+⸻
+ 
+5. WELCOME SCREEN
+Create a beautiful introductory screen.
+Main heading
+“DIYUUUU ☁️💜”
+Subtitle
+“For your cloudy days.”
+Supporting message
+“A little corner of the internet, made with care, just for you.”
+The exact wording must be editable from the administrator dashboard.
+Visual design
+Show:
+* A rainy window.
+* Soft forest silhouettes.
+* A warm lamp.
+* Lavender light.
+* Subtle floating particles.
+* A small animated cloud.
+* Gentle rain animation.
+Main button
+“Enter your little world”
+Clicking it must transition into the main website with a smooth animation.
+Optional sound
+Do not play sound automatically.
+If ambient audio is available, show a clear sound toggle. Sound must be off by default.
+Respect reduced-motion settings and provide a way to skip animations.
+ 
+⸻
+ 
+6. MAIN COZY ROOM
+The main room is the central hub.
+Design it as a cozy illustrated environment with interactive objects.
+Possible objects:
+* Rainy window.
+* Desk lamp.
+* Notebook.
+* Cup of chai.
+* Music player.
+* Plant.
+* Bookshelf.
+* Little forest outside.
+* Starry sky.
+Each interactive object should open a relevant section or reveal a small interaction.
+Examples:
+Rainy window
+Opens the Rainy Window experience.
+Notebook
+Opens personal notes or appreciation messages.
+Music player
+Opens the music player.
+Chai cup
+Reveals a short, comforting message.
+Desk lamp
+Toggles a warm lighting effect.
+Bookshelf
+Opens memory cards or little notes.
+Plant
+Reveals a small growth-themed message.
+Interactive objects must have clear visual hover, focus, and tap states.
+Do not create objects that look clickable but do nothing.
+On mobile, interactions must work through tapping rather than hover alone.
+ 
+⸻
+ 
+7. CLOUDY-DAY COMFORT CORNER
+Create a section designed to offer gentle, supportive messages.
+Include categories such as:
+* When the day feels heavy.
+* When you need a small break.
+* When you feel overwhelmed.
+* When you want something comforting.
+* When you need a little reminder to rest.
+* When you want a tiny smile.
+* When you want to feel appreciated.
+Each category opens a set of short messages.
+Example messages:
+“Har din ko perfect hona zaroori nahi hai. Kabhi-kabhi bas apne pace par chalna bhi enough hota hai.”
+“Aaj agar sab kuch thoda cloudy lag raha hai, toh aap apne liye thoda waqt nikaal sakti hain.”
+“Chhoti si progress bhi progress hoti hai.”
+“Aapko har waqt productive rehna zaroori nahi hai. Rest bhi important hai.”
+“Ek cup chai, thodi si shanti aur apne liye kuch minutes. Kabhi-kabhi itna bhi kaafi hota hai.”
+Messages must be editable through the administrator dashboard.
+Interactions
+* Tap a category.
+* Reveal a message.
+* Show another message.
+* Save a favorite non-sensitive message.
+* Copy a message.
+* Return to the room.
+Avoid manipulative language such as “You must come back to me” or “Only I can make you happy.”
+The experience must feel supportive and pressure-free.
+ 
+⸻
+ 
+8. PERSONAL NOTES AND LETTERS
+Create a beautiful notebook-style section.
+Include:
+* Short personal notes.
+* Appreciation messages.
+* Small reminders.
+* Longer letters.
+* Optional date labels.
+* Optional decorative illustrations.
+The administrator must be able to create, edit, publish, unpublish, reorder, and delete notes.
+Each note should support:
+* Title.
+* Body.
+* Optional date.
+* Optional category.
+* Optional cover illustration.
+* Visibility status.
+* Display order.
+Example categories:
+* Little reminders.
+* Things worth remembering.
+* Cloudy-day notes.
+* Appreciation.
+* Small memories.
+Use a handwritten-paper aesthetic without compromising readability.
+Letter experience
+Include a dedicated letter page.
+The letter should open like a notebook page or folded paper.
+The visitor should be able to:
+* Open the letter.
+* Read it comfortably.
+* Close it.
+* Return to the main room.
+Allow Nishant to update the letter from the administrator panel.
+Do not permanently hardcode the entire personal letter into the frontend if it is meant to be editable.
+ 
+⸻
+ 
+9. MEMORY GARDEN
+Create an interactive digital garden representing small memories and meaningful moments.
+Visual elements:
+* Little plants.
+* Leaves.
+* Flowers.
+* Stars.
+* Paper tags.
+* Small illustrated objects.
+Each item can represent a memory or a positive message.
+The administrator can add:
+* Memory title.
+* Short description.
+* Optional date.
+* Optional image or illustration.
+* Optional category.
+* Visibility.
+* Display order.
+Clicking an item opens a modal or card with its content.
+Include elegant empty states when no memories have been added.
+Do not invent personal memories and present them as real events.
+Any example content used during development must be clearly marked as sample content and replaced with actual content before publication.
+ 
+⸻
+ 
+10. LITTLE THINGS I APPRECIATE
+Create a dedicated appreciation section.
+Use beautiful cards with short, thoughtful statements.
+Possible examples:
+* “The way you see things from your own point of view.”
+* “Your little expressions.”
+* “The way ordinary moments can become memorable.”
+* “Your individuality.”
+* “The little things that make you, you.”
+These are example placeholders, not claims about facts that have not been confirmed.
+Allow Nishant to edit the wording through the administrator dashboard.
+Design options:
+* Flip cards.
+* Expandable cards.
+* A slowly revealed list.
+* Small illustrated cards.
+Do not make the user click through an excessive number of forced interactions.
+ 
+⸻
+ 
+11. INTERACTIVE MINI-GAMES
+Create a dedicated mini-game area.
+Games should be light, responsive, accessible, and genuinely functional.
+Include the following games.
+Game A: Catch the Stars
+A simple game where the player catches falling stars.
+Requirements:
+* Start button.
+* Score counter.
+* Time limit or optional endless mode.
+* Pause button.
+* Restart button.
+* Touch controls for mobile.
+* Keyboard controls where appropriate.
+* Final score screen.
+Keep gameplay simple and enjoyable.
+Game B: Find the Hidden Heart
+Create a small illustrated room or garden with hidden objects.
+The player taps objects to find a hidden heart or another decorative surprise.
+Requirements:
+* Multiple clickable objects.
+* Clear feedback.
+* A completion state.
+* Restart option.
+* Responsive mobile layout.
+Game C: Mood Cloud
+Display several illustrated clouds with different labels.
+Examples:
+* Calm.
+* Rainy.
+* Sunny.
+* Sleepy.
+* Dreamy.
+* Chaotic.
+Selecting a cloud reveals a short, gentle message.
+Do not treat a selected mood as a medical diagnosis.
+Do not automatically send mood selections to Telegram.
+Game D: Tiny Memory Match
+Create a memory-matching card game.
+Requirements:
+* Cards flip when tapped.
+* Match detection.
+* Score or move counter.
+* Completion message.
+* Restart button.
+* Responsive layout.
+Use original decorative icons or properly licensed assets.
+Game E: Little Garden
+Create a small interactive garden.
+The player can:
+* Select a plant.
+* Water it.
+* Watch a simple growth animation.
+* Reveal a small message.
+Keep the experience symbolic and playful.
+Game management
+The administrator should be able to:
+* Enable or disable individual games.
+* Change their titles.
+* Edit supporting messages.
+* Reset aggregate game statistics where applicable.
+Do not store personally identifying game data unnecessarily.
+ 
+⸻
+ 
+12. MUSIC UPLOADER AND MUSIC PLAYER
+This is a required feature, not an optional decorative component.
+Create a complete music-player experience.
+Music-player design
+Use a cozy music-player card inspired by the forest-and-rain visual identity.
+Include:
+* Current track title.
+* Artist or attribution.
+* Album artwork or cover image.
+* Play/pause button.
+* Previous-track button.
+* Next-track button.
+* Seek/progress bar.
+* Elapsed time.
+* Total duration.
+* Volume control.
+* Mute/unmute.
+* Playlist.
+* Current playback status.
+* Loading state.
+* Error state.
+* Empty playlist state.
+Where appropriate, support:
+* Shuffle.
+* Repeat one.
+* Repeat playlist.
+The player must work on mobile and desktop.
+Playback behavior
+* Music must be off by default.
+* Never force audio to play automatically.
+* Start playback only after an explicit user action.
+* Preserve a reasonable playback position when moving between sections, if supported.
+* Do not restart the same track unexpectedly after navigation.
+* Gracefully handle unsupported file types, missing files, network failures, and playback errors.
+Admin music uploader
+Inside the administrator dashboard, create a real music-management interface.
+The administrator must be able to:
+1. Upload an audio file.
+2. Enter the track title.
+3. Enter the artist or attribution.
+4. Upload or select cover artwork.
+5. Add a short description.
+6. Set the track’s display order.
+7. Add the track to a playlist.
+8. Publish or unpublish a track.
+9. Edit metadata.
+10. Delete a track.
+11. Preview playback.
+12. Reorder tracks.
+13. Create, rename, and delete playlists.
+Use secure backend-supported file storage.
+Do not assume an upload works merely because a file input appears on screen.
+After uploading, persist the file and metadata so the track remains available after refreshing the website.
+If storage credentials are missing, clearly identify the setup required.
+Copyright requirements
+Only upload or use audio that the administrator owns, has permission to use, or is otherwise legally authorized to distribute.
+Do not scrape copyrighted songs or bypass music-platform restrictions.
+If a track cannot legally be hosted directly, support a permitted external embed or authorized link where appropriate.
+ 
+⸻
+ 
+13. RAINY WINDOW EXPERIENCE
+Create a beautiful interactive rainy-window scene.
+Include:
+* Animated raindrops.
+* A blurred forest outside the window.
+* Soft ambient lighting.
+* A small illustrated window frame.
+* Optional subtle mist.
+* Optional lighting adjustments.
+Controls:
+* Rain animation on/off.
+* Reduced-motion mode.
+* Light intensity or visual theme.
+* Return to the main room.
+If ambient rain audio is included, require an explicit play action and provide a volume control.
+Do not use excessive animations that reduce performance.
+The rain scene should remain usable on lower-powered mobile devices.
+ 
+⸻
+ 
+14. TODAY’S LITTLE PLAN
+Create an editable “Today’s Little Plan” section.
+The purpose is to show a small, gentle daily card rather than a rigid schedule.
+Possible card elements:
+* Today’s date.
+* A small plan or activity.
+* A short supportive message.
+* Optional illustration.
+* Optional reminder.
+* Optional completion toggle.
+Use the visitor’s configured local timezone.
+For this website, default to:
+Asia/Kolkata
+The date must update dynamically.
+Do not hardcode an outdated date into the interface.
+Configurable family-visit card
+Create a special event card that can represent a visit to Bua’s or Dadi’s home.
+The event details must be editable in the administrator panel.
+Fields:
+* Event title.
+* Event date.
+* Optional start time.
+* Optional end time.
+* Optional short message.
+* Optional illustration.
+* Visibility.
+* Reminder setting.
+* Display order.
+The administrator can configure the actual visit date.
+Do not assume that a past date is still “today.”
+If the configured event date has passed:
+* Move the card into a “Past Little Days” or archive section.
+* Stop displaying it as today’s plan.
+* Preserve it only if the administrator has chosen to retain the event.
+Do not send notifications to Divya without an explicitly configured, consented notification workflow.
+ 
+⸻
+ 
+15. OPTIONAL PRIVATE CALENDAR
+Create an optional, privacy-conscious personal calendar.
+This feature must be disabled by default until the visitor chooses to use it.
+The calendar must never be a prerequisite for using the rest of the website.
+Possible functionality
+* Monthly calendar view.
+* Date selection.
+* Private notes.
+* Optional personal reminders.
+* Optional cycle tracking.
+* Edit and delete controls.
+* Clear privacy information.
+* Data export and deletion.
+Cycle-tracking functionality
+If cycle tracking is enabled, allow the visitor to enter:
+* Period start date.
+* Period end date.
+* Optional symptoms.
+* Optional notes.
+* Optional cycle length, if known.
+Do not assume that every cycle is regular.
+Do not invent or silently fill in missing medical information.
+Do not claim that predictions are medically certain.
+Any estimate must be visibly labeled as an estimate and must allow correction.
+ automatically send menstrual dates, symptoms, cycle notes, or health information to Telegram.
+The visitor must explicitly choose to enable the feature and must be able to disable it, edit entries, or delete all cycle data.
+If the visitor reports repeated unexpected bleeding, unusually heavy bleeding, severe pain, dizziness, or weakness, show a gentle suggestion to seek advice from a qualified healthcare professional or trusted adult as appropriate. Do not diagnose the cause or recommend prescription treatment.
+Do not infer or permanently store medical facts from a single conversation or an unconfirmed prefilled value.
+If an initial date or cycle status is provided during development, mark it as unconfirmed and ask the visitor to verify it privately before using it.
+ 
+⸻
+ 
+16. PRIVATE REFLECTION SPACE
+Create an optional personal reflection or journal area.
+This section should be disabled until the visitor explicitly opens or enables it.
+Possible fields:
+* Short note.
+* Date.
+* Optional mood label.
+* Optional private reminder.
+Privacy requirements
+* Clearly label the section as private.
+* automatically send journal content to Telegram only for nishant.
+* Do not expose journal entries in public memory cards.
+* Do not include journal content in general analytics.
+* share journal content with the administrator by default.
+* Provide clear delete controls.
+* Explain whether entries are stored locally or on a server.
+
+⸻
+ 
+17. SURPRISE ENVELOPE
+Create a special surprise-envelope interaction.
+The envelope should appear as a beautiful illustrated paper envelope.
+When the visitor taps it:
+1. The envelope opens.
+2. A letter or note slides out.
+3. The note is displayed on a paper-like card.
+4. The visitor can close it.
+5. The visitor can return to the main room.
+The letter content must be editable in the administrator panel.
+Optional features:
+* Multiple envelopes.
+* Different reveal animations.
+* Date-based notes.
+* A small star or flower illustration.
+* A gentle completion animation.
+Avoid making the envelope a forced gate that prevents navigation.
+Do not use manipulative countdowns or messages implying that the visitor must open it.
+ 
+⸻
+ 
+18. TELEGRAM BOT INTEGRATION
+Telegram integration is a core backend feature.
+Build a secure Telegram integration so the administrator can receive explicitly submitted visitor responses and relevant website notifications.
+The bot must not be treated as a substitute for the website’s own functionality.
+Telegram bot capabilities
+Where supported, the integration should:
+* Send a notification when the visitor explicitly submits an eligible response.
+* Send a notification when the visitor intentionally uses a “Send to Nishant” action.
+* Provide administrative status notifications.
+* Send a test message from the administrator dashboard.
+* Display a clear error if Telegram delivery fails.
+* Avoid duplicate notifications.
+* Record delivery status without unnecessarily duplicating message content.
+If two-way messaging is configured, support an authorized administrator workflow for receiving and managing incoming bot messages.
+Do not pretend that a message was sent when Telegram returns an error.
+User response submission
+Create an optional “Share with Nishant” interaction for appropriate content.
+For example, the visitor may choose to send:
+* A message written in a designated response box.
+* An answer to a designated question.
+* A response to a specific interactive prompt.
+Before sending, clearly disclose:
+“This response will be shared with Your Sir jiii”
+Buttons:
+* Send.
+* Cancel.
+The visitor must actively press Send.
+After sending, show the real result:
+* Successfully sent.
+* Failed to send.
+* Retrying, if a real retry is in progress.
+ silently transmit:
+* Private journal entries.
+* Cycle-tracking information.
+* Health notes.
+* Passwords.
+* Private browser data.
+* Unsubmitted form content.
+* Keystrokes.
+* Hidden activity recordings.
+
+Telegram notification format
+Use a clean, readable message format.
+Example:
+DIYUUUU WEBSITE — NEW SHARED RESPONSE
+Section: [Section name] Question: [Question title, if applicable] Response: [Explicitly submitted response] Submitted at: [Date and time in Asia/Kolkata]
+Website: [Configured website name]
+Use safe text formatting and escape user-provided content properly.
+Do not include sensitive information in notifications unless the visitor explicitly requests sharing and the feature is appropriate to support.
+Telegram configuration
+The administrator dashboard should include:
+* Telegram integration status.
+* Bot configuration status.
+* Recipient chat ID configuration.
+* Test-notification button.
+* Notification settings.
+* Delivery-error information.
+* A way to enable or disable specific notification categories.
+Critical token security
+The Telegram bot token must never be placed in:
+* Frontend JavaScript.
+* Public HTML.
+* Client-side configuration files.
+* Browser local storage.
+* Public repositories.
+* Visible network requests that expose the token.
+Store the token only in a secure backend environment variable or secrets manager.
+Use server-side functions to communicate with Telegram.
+If the platform requires environment variables, provide a setup guide explaining how to configure them.
+Never ask the administrator to paste a real bot token into a public frontend field.
+If a dashboard field is needed to initiate secure configuration, send the value directly to an authenticated backend secret-management mechanism. Do not save the token in the website database as ordinary readable text.
+If secure secret management is unavailable, explain the limitation and provide the required manual setup instructions.
+
+
+ADDITIONAL REQUIREMENT: COMPLETE TELEGRAM ACTIVITY MONITORING & REPORTING
+
+I want a comprehensive, real-time Telegram activity-reporting system integrated into the website. Send detailed activity notifications to my configured Telegram bot/chat through a secure backend.
+
+Track and report the following website events:
+
+1. Website Sessions: When the website is opened, session start time, when the visitor leaves or closes the website, and session duration. If the browser closes unexpectedly, estimate the session end using the last activity timestamp and clearly label it as estimated.
+2. Section Activity: Which section was opened, its exact opening time, closing time when available, duration, and how many times each section was opened.
+3. Navigation: Page changes, button clicks, menu interactions, back navigation, and repeated visits to individual sections.
+4. Mini-Games: Which game was opened, start time, completion time, duration, score where applicable, and restart count.
+5. Music Activity: Which track was played, play/pause events, playback duration, track changes, and playlist interactions.
+6. Website Interactions: Clicks on interactive objects, opening notes or letters, opening the surprise envelope, changing themes, and using website features.
+7. Forms and Responses: When a visitor submits an answer or message, send the submitted content to Telegram
+8. Daily Summary: Send a configurable daily summary containing session count, total estimated active time, section-opening counts, most-used features, game activity, and music activity.
+9. Real-Time Notifications: Allow the administrator to configure which event categories generate immediate Telegram notifications
+10. Admin Dashboard: Display event history, timestamps in Asia/Kolkata, session durations, section counts, activity filters, daily summaries, and Telegram delivery status.
+
+Technical Requirements
+
+* Implement tracking through a proper backend and secure Telegram Bot API integration.
+* Never expose the Telegram bot token in frontend JavaScript or public files.
+* Prevent duplicate events and excessive notification spam; batch high-frequency events and provide configurable reporting intervals.
+* Do not claim that a website was closed at an exact time if that cannot be reliably detected.
+* Do not Keep private journal entries, menstrual-cycle information, health details, and unsubmitted form contents out of activity logs and Telegram notifications. Send it to nishant raj
+* Provide clear visitor disclosure and appropriate consent controls for analytics and activity tracking. secretly track keystrokes, or precise location.
+* Allow the administrator to enable or disable event categories, configure summaries, set data-retention periods, and delete stored activity logs.
+Make the integration genuinely functional, persistent, and tested. If credentials or backend configuration are missing, explain exactly what must be configured instead of simulating successful delivery. 
+⸻
+ 
+19. HIDDEN ADMINISTRATOR DASHBOARD
+Create a complete administrator dashboard for Nishant Raj.
+This is a required feature.
+The dashboard must be separate from the normal visitor experience and must not appear in the ordinary navigation.
+A small, unobtrusive logo or administrator entry point may be placed in an appropriate location if required.
+However, hiding the entry point is not a security mechanism.
+Administrator authentication
+The dashboard must use real authentication.
+A bootstrap setup phrase may be configured as:
+MYLOVEDIVYA
+Treat this as an initial setup value only, not as a permanently hardcoded password.
+Requirements:
+* Secure server-side authentication.
+* Password hashing.
+* Secure session management.
+* Rate limiting on login attempts.
+* Logout.
+* Session expiration.
+* Protection against unauthorized administrative requests.
+* Server-side authorization checks.
+* No plaintext password storage.
+* No password embedded in public frontend code.
+If the builder cannot implement secure authentication with the available platform, disclose that limitation rather than pretending a client-side password popup is secure.
+The bootstrap phrase should be changeable, and the initial setup should require the administrator to configure a real password.
+Admin dashboard overview
+Display:
+* Website status.
+* Backend status.
+* Telegram connection status.
+* Music-storage status.
+* Recent explicitly submitted responses.
+* Configurable event status.
+* Optional consented analytics.
+* Recent administrative activity.
+Avoid collecting unnecessary personal data.
+Admin section A: Website content
+Allow the administrator to:
+* Edit the welcome screen.
+* Edit the subtitle.
+* Edit the comfort messages.
+* Create and edit notes.
+* Create and edit letters.
+* Add and edit appreciation cards.
+* Manage memory-garden items.
+* Change the displayed nicknames.
+* Change section visibility.
+* Reorder sections.
+* Update footer text.
+* Preview changes before publishing.
+Admin section B: Mini-games
+Allow:
+* Enable/disable each game.
+* Edit titles.
+* Edit descriptions.
+* Update messages.
+* Reset appropriate aggregate game statistics.
+* Configure optional difficulty settings.
+Admin section C: Music management
+Provide the complete uploader and player-management functionality described earlier.
+Admin section D: Telegram
+Provide:
+* Integration status.
+* Secure setup instructions.
+* Notification controls.
+* Test notifications.
+* Recipient configuration.
+* Delivery logs.
+* Error handling.
+Do not display secret tokens after configuration.
+Admin section E: Event management
+Allow the administrator to:
+* Configure the family-visit card.
+* Set the event date.
+* Set the event title.
+* Set an optional message.
+* Choose whether the event is visible.
+* Configure archiving after the event date.
+Admin section F: Calendar and privacy settings
+Allow the administrator to:
+* Enable or disable the optional calendar.
+* Enable or disable cycle tracking.
+* Manage retention settings.
+* View the privacy configuration.
+* Disable features that collect optional data.
+responses
+Display only content that the visitor explicitly submitted for sharing.
+Show:
+* Response category.
+* Question title, where relevant.
+* Response text.
+* Submission time.
+* Telegram delivery status.
+* Delete control.
+Provide a way to delete stored responses.
+Do not create a hidden inbox containing all visitor activity.
+Admin section H: Analytics
+Create a privacy-conscious analytics dashboard as described below.
+Admin section I: Site configuration
+Allow:
+* Theme configuration.
+* Website title and subtitle.
+* Feature toggles.
+* Footer settings.
+* Animation settings.
+* Reduced-motion defaults.
+* Timezone configuration.
+* Privacy and consent text.
+* Data-retention configuration.
+All administrative changes must persist.
+ 
+⸻
+ 
+20. WEBSITE ANALYTICS AND VISITOR ACTIVITY
+Create an optional analytics dashboard so Nishant can understand how visitors use the website.
+This must be transparent and privacy-conscious.
+The website should disclose analytics and provide an appropriate opt-out.
+Do not implement covert surveillance.
+Supported metrics
+Subject to consent and platform capabilities, track aggregate information such as:
+* Total website sessions.
+* Number of visits.
+* Approximate session duration.
+* Most frequently visited sections.
+* Section-button clicks.
+* Number of times a mini-game is started.
+* Number of times a music track is played.
+* Aggregate game completion counts.
+* General navigation patterns.
+* Broad daily or weekly activity totals.
+Session duration
+Measure session duration using a simple session-start and session-end or inactivity-based approach.
+Clearly distinguish:
+* Estimated active session duration.
+* Total time the page remained open.
+A browser tab left open does not prove that the visitor was actively using the website.
+Do not present estimates as exact human attention measurements.
+
+Admin analytics dashboard
+Display:
+* Total sessions.
+* Estimated average session duration.
+* Most frequently visited sections.
+* Aggregate section-click counts.
+* Daily activity chart.
+* Weekly activity chart.
+* Music-play counts.
+* Game-start and completion counts.
+If meaningful historical data is unavailable, show a genuine empty state.
+Do not invent traffic or display fabricated statistics.
+ 
+⸻
+ 
+21. SETTINGS PANEL
+Create a clean settings panel accessible from the visitor interface.
+Include the following settings.
+Appearance
+* Forest theme.
+* Lavender theme.
+* Warm cream theme.
+* Optional dark mode if it fits the visual system.
+Animation
+* Animations on/off.
+* Reduced-motion mode.
+* Rain animation on/off.
+Sound
+* Ambient audio on/off.
+* Music-player volume.
+* Mute/unmute.
+Personalization
+* Optional nickname display.
+* Optional introductory message.
+* Optional favorite comfort messages.
+Privacy
+* Analytics consent.
+* Data-storage explanation.
+* Optional data export.
+* Delete applicable saved data.
+* Disable optional features.
+All settings must work.
+Persist suitable preferences across sessions where appropriate.
+ 
+⸻
+ 
+ 
+⸻
+ 
+23. RESPONSIVE DESIGN
+The website must work properly on:
+* iPhones.
+* Android phones.
+* Tablets.
+* Laptops.
+* Desktop monitors.
+Prioritize mobile usability.
+Mobile requirements
+* No horizontal scrolling.
+* No overlapping buttons.
+* Readable typography.
+* Properly sized touch targets.
+* Comfortable spacing.
+* Sticky navigation only when useful.
+* Music controls that fit small screens.
+* Modals that fit the viewport.
+* Forms that work with mobile keyboards.
+* Responsive illustrations.
+* No important content hidden behind floating elements.
+Desktop requirements
+* Balanced maximum content width.
+* Appropriate whitespace.
+* Well-designed grids.
+* Consistent alignment.
+* No stretched cards.
+* No oversized empty areas.
+* Comfortable reading width.
+Test at narrow mobile widths, not only at standard desktop dimensions.
+ 
+⸻
+ 
+24. ACCESSIBILITY
+Implement appropriate accessibility standards.
+Requirements:
+* Semantic HTML.
+* Accessible labels.
+* Keyboard navigation.
+* Visible focus states.
+* Suitable color contrast.
+* Alternative text for meaningful images.
+* Accessible form validation.
+* Screen-reader-friendly status messages.
+* Reduced-motion support.
+* Clear error messages.
+* Buttons with meaningful names.
+* Proper heading hierarchy.
+Do not rely exclusively on color to convey important information.
+Do not make the entire website dependent on hover effects.
+ 
+⸻
+ 
+25. PERFORMANCE AND ASSET MANAGEMENT
+Optimize the website for fast loading.
+Requirements:
+* Lazy-load nonessential images.
+* Compress images appropriately.
+* Avoid unnecessarily large assets.
+* Avoid excessive animation libraries.
+* Avoid repeated unnecessary API calls.
+* Avoid loading all audio tracks into memory simultaneously.
+* Handle failed external requests gracefully.
+* Use loading indicators only when needed.
+* Avoid blocking the entire interface while an optional feature loads.
+Use original, properly licensed, or authorized visual assets.
+Do not rely on random image URLs that may break.
+Provide graceful fallback illustrations if an external asset fails.
+ 
+⸻
+ 
+26. ERROR HANDLING AND EMPTY STATES
+Every major feature must handle missing data and failures.
+Examples:
+* No notes published.
+* No memories added.
+* No music tracks uploaded.
+* Telegram not configured.
+* Telegram message failed.
+* Music file unavailable.
+* No calendar entries.
+* Analytics disabled.
+* No analytics history.
+* Admin login failed.
+* Upload failed.
+* Database unavailable.
+Each state must show a useful message and an appropriate next action.
+Never show a success message if the operation failed.
+Never silently discard an administrator’s changes.
+ 
+⸻
+ 
+27. DATABASE AND PERSISTENCE REQUIREMENTS
+Use persistent storage for features that require information to survive refreshes or sessions.
+At minimum, support persistent management of:
+* Website settings.
+* Published notes.
+* Letters.
+* Appreciation cards.
+* Memory items.
+* Music metadata.
+* Playlist configuration.
+* Uploaded music references.
+* Event configuration.
+* Administrator configuration.
+* Explicitly shared responses.
+* Analytics consent and aggregated analytics, where enabled.
+Use appropriate validation.
+Do not trust data merely because it comes from the frontend.
+Validate administrative operations on the server.
+Implement access controls so ordinary visitors cannot change administrative content or read administrator-only records.
+Use safe database queries and appropriate error handling.
+Do not place database credentials in frontend code.
+If database migrations are needed, include them and document the setup.
+ 
+⸻
+ 
+28. TELEGRAM DELIVERY AND BACKEND RELIABILITY
+Implement Telegram communication through authenticated backend endpoints or serverless functions.
+Requirements:
+* Validate incoming requests.
+* Apply rate limits where appropriate.
+* Avoid exposing secret credentials.
+* Validate response content and size.
+* Handle Telegram API errors.
+* Use timeouts.
+* Prevent accidental duplicate submissions where practical.
+* Record delivery status.
+* Avoid unlimited automatic retries.
+* Do not leak internal stack traces to visitors.
+* Do not include secret values in error logs.
+If a message is accepted by Telegram, show a truthful success state.
+If delivery fails, show a truthful failure state and allow a reasonable retry.
+Do not promise delivery before the backend confirms it.
+ 
+⸻
+ 
+29. SECURITY REQUIREMENTS
+Security is mandatory.
+Implement appropriate protections for:
+* Administrator authentication.
+* Authorization.
+* Database access.
+* File uploads.
+* Telegram credentials.
+* Form submissions.
+* Session management.
+* User-provided text.
+* Server-side API routes.
+Where appropriate:
+* Validate input on both client and server.
+* Sanitize or safely render user-generated content.
+* Limit upload size.
+* Restrict allowed file types.
+* Use secure HTTP-only session cookies when supported.
+* Apply secure cookie settings.
+* Use CSRF protection where applicable.
+* Rate-limit sensitive endpoints.
+* Avoid exposing internal error details.
+* Avoid storing passwords in plaintext.
+* Avoid embedding secrets in source code.
+Do not rely on a hidden URL, tiny logo, or client-side password check as the sole protection for the administrator panel.
+Do not include real secret credentials in generated source files.
+ 
+⸻
+ 
+30. TESTING REQUIREMENTS
+Before considering the website complete, test the actual implementation.
+Navigation
+* Every navigation item opens the correct section.
+* Back and close buttons work.
+* The visitor can return to the main room.
+* The mobile navigation works.
+Welcome screen
+* The entry button works.
+* The transition does not break navigation.
+* Animations can be disabled.
+Content
+* Notes display correctly.
+* Letters display correctly.
+* Appreciation cards work.
+* Memory cards open correctly.
+* Empty states are present.
+Mini-games
+* Start, pause, completion, and restart controls work.
+* Touch interactions work.
+* Scores update correctly.
+* No game traps the visitor on a screen.
+Music
+* Playback begins only after a user action.
+* Play/pause works.
+* Previous/next works.
+* Seek works where supported.
+* Volume works.
+* Empty playlists display correctly.
+* Failed files show useful errors.
+* Uploaded tracks persist after refreshing.
+Administrator dashboard
+* Unauthorized users cannot access administrative functions.
+* Login works.
+* Logout works.
+* Sessions expire appropriately.
+* Content edits persist.
+* Uploads work.
+* Music metadata updates work.
+* Feature toggles persist.
+* Event dates update correctly.
+* Private records remain protected.
+Telegram
+* Missing configuration is handled clearly.
+* Test notifications work after setup.
+* Explicitly submitted responses can be sent.
+* Failures are displayed honestly.
+* No token appears in public frontend assets.
+* Private journal and cycle data are not automatically sent.
+Analytics
+* Consent is respected.
+* Opt-out works.
+* Session duration is labeled as estimated.
+* Section interactions are counted correctly.
+* Private content is not recorded.
+* Empty analytics states work.
+Responsive design
+* Test mobile, tablet, and desktop layouts.
+* No horizontal overflow.
+* No broken controls.
+* No text clipping.
+* No overlapping modals.
+Accessibility
+* Keyboard navigation works.
+* Focus states are visible.
+* Buttons are labeled.
+* Reduced-motion preferences are respected.
+Fix all discovered issues before declaring the website ready.
+ 
+⸻
+ 
+31. CONTENT MANAGEMENT AND SAMPLE DATA
+The website should look complete even before Nishant has added all of his personal content.
+Use a small amount of clearly identified sample content where needed.
+However:
+* Do not invent personal memories.
+* Do not fabricate actual messages from Divya.
+* Do not invent medical history.
+* Do not display sample analytics as genuine visitor statistics.
+* Do not create fake Telegram delivery records.
+Sample content must be editable or removable from the administrator dashboard.
+Make it easy for Nishant to replace placeholder content with his actual notes and messages.
+ 
+⸻
+ 
+32. CODE QUALITY AND PROJECT ORGANIZATION
+Keep the project maintainable.
+Requirements:
+* Reusable components.
+* Clear file organization.
+* Descriptive naming.
+* Centralized design tokens.
+* Shared UI components.
+* Separated frontend and backend responsibilities.
+* Consistent error handling.
+* Appropriate TypeScript types where supported.
+* No duplicated large components when reusable components are appropriate.
+* No dead navigation links.
+* No unused fake buttons.
+* No hardcoded secret credentials.
+* No unnecessary dependencies.
+Avoid placing the entire application in one giant component.
+Use appropriate components for:
+* Navigation.
+* Welcome screen.
+* Cozy room.
+* Notes.
+* Letters.
+* Memory garden.
+* Mini-games.
+* Music player.
+* Calendar.
+* Settings.
+* Admin dashboard.
+* Analytics.
+* Telegram integration.
+ 
+⸻
+ 
+33. README AND SETUP DOCUMENTATION
+Provide a useful README.
+It must explain:
+* Project structure.
+* How to run the website locally.
+* Required environment variables.
+* Database setup.
+* File-storage setup.
+* Telegram bot setup.
+* How to configure the recipient chat ID.
+* How to test Telegram delivery.
+* How administrator authentication is initialized.
+* How to change the bootstrap setup phrase.
+* How to upload music.
+* How to configure the event date.
+* How to enable or disable analytics.
+* How to enable optional calendar functionality.
+* How to deploy the website.
+* Which external services require credentials.
+* Which features remain unconfigured, if any.
+Do not include actual bot tokens, passwords, or database secrets in the README.
+Provide an .env.example containing variable names and safe placeholder values only.
+ 
+⸻
+ 
+34. DEPLOYMENT REQUIREMENTS
+Prepare the website for deployment using the available platform.
+If the platform supports direct deployment:
+* Build the production version.
+* Resolve build errors.
+* Configure environment variables.
+* Verify backend endpoints.
+* Verify database connectivity.
+* Verify file storage.
+* Verify Telegram integration after credentials are configured.
+* Verify the deployed website loads correctly.
+* Provide the real deployed URL only after deployment succeeds.
+If deployment requires credentials or manual approval, explain exactly what is missing.
+Do not invent a deployment URL.
+Do not claim the website is live unless it has actually been deployed and verified.
+ 
+⸻
+ 
+35. FINAL ACCEPTANCE CRITERIA
+The project is complete only when all of the following are satisfied:
+1. The welcome screen is polished and functional.
+2. The main cozy room is implemented.
+3. The visual identity consistently uses the forest, lavender, rain, and cozy-room aesthetic.
+4. The comfort corner works.
+5. Notes and letters can be managed.
+6. The memory garden works.
+7. Appreciation cards work.
+8. All implemented mini-games function properly.
+9. The rainy-window scene works.
+10. The surprise envelope works.
+11. The music player works.
+12. The administrator can upload and manage music.
+13. Uploaded music and metadata persist.
+14. The administrator dashboard is real and protected.
+15. Website content can be edited without modifying source code.
+16. Event dates are configurable and date-aware.
+17. Past events are not incorrectly presented as today’s events.
+18. Optional personal calendar functionality is implemented if supported.
+19. Sensitive personal features are opt-in.
+20. Telegram integration uses server-side credentials.
+21. Explicitly shared responses can be delivered to Telegram.
+22. Private journal and cycle information are automatically transmitted.
+23. Analytics are transparent, optional, and privacy-conscious.
+24. Data deletion and applicable consent controls work.
+25. The website is responsive.
+26. Accessibility basics are implemented.
+27. Error states are handled properly.
+28. No major buttons are nonfunctional.
+29. No secret credentials are exposed in frontend code.
+30. The README and setup documentation are provided.
+31. The production build succeeds.
+32. Deployment status is reported truthfully.
+ 
+⸻
+ 
+36. FINAL EXECUTION INSTRUCTIONS
+Do not merely return a design proposal, a list of recommendations, or another prompt.
+Start building the actual website.
+First inspect the existing project and preserve any useful implementation already present.
+Then:
+1. Plan the project structure.
+2. Build the complete frontend.
+3. Build the required backend functionality.
+4. Implement database persistence.
+5. Implement the administrator dashboard.
+6. Implement the music uploader and player.
+7. Implement Telegram integration securely.
+8. Implement the privacy-conscious analytics system.
+9. Implement the interactive experiences and games.
+10. Test all major features.
+11. Fix build and runtime errors.
+12. Prepare deployment.
+13. Write the README.
+14. Report exactly what works, what has been tested, and what still requires external configuration.
+Do not unnecessarily replace working code with a new scaffold.
+Do not remove useful existing features simply to simplify the project.
+Do not declare a feature complete until its actual functionality has been implemented and tested.
+If time or platform constraints prevent completion of everything, prioritize a working, cohesive product over a large collection of broken interfaces.
+Prioritize in this order:
+1. Core website and visual quality.
+2. Functional navigation and interactive experiences.
+3. Secure administrator dashboard.
+4. Persistent content management.
+5. Music uploader and player.
+6. Secure Telegram integration.
+7. Privacy-conscious analytics.
+8. Optional calendar and private features.
+9. Documentation and deployment.
+Do not sacrifice security, truthful status reporting, or usability to make the project appear more complete than it is.
+FINAL CREATIVE PRINCIPLE
+The final result should feel like a small, thoughtfully crafted world made for Diyuuuu.
+It should be beautiful without being cluttered, personal without being intrusive, interactive without being confusing, and emotionally comforting without creating pressure.
+The website should communicate care through its details: the rain on the window, the warmth of the lamp, the little notes, the forest colors, the music, the thoughtful interactions, and the freedom to explore at her own pace.
+Build a complete, working, polished, secure, responsive website—not merely a beautiful-looking mockup.

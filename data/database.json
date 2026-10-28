@@ -1,0 +1,1171 @@
+{
+  "adminAuth": {
+    "passwordHash": "999116d5e151498f78a553b06c82d3b1e3608b2f66d08700463ba31d7bcae058",
+    "isCustomPasswordSet": false,
+    "sessions": []
+  },
+  "authVerification": {
+    "expectedDob": "2008-04-24",
+    "requireVerification": true,
+    "activeOtps": [
+      {
+        "phone": "8449385256",
+        "email": "nraj9811@gmail.com",
+        "otp": "401765",
+        "expiresAt": 1793181053148,
+        "attempts": 0,
+        "resendAfter": 1793180498148
+      },
+      {
+        "phone": "9876543210",
+        "email": "test@example.com",
+        "otp": "303301",
+        "expiresAt": 1793185883334,
+        "attempts": 0,
+        "resendAfter": 1793185328334
+      }
+    ],
+    "tempTokens": [],
+    "verifiedSessions": [],
+    "verificationLogs": [
+      {
+        "id": "vlog_1793185283343",
+        "mobileNumber": "9876543210",
+        "email": "test@example.com",
+        "timestamp": "28/10/2026, 4:31:23 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP generated (SMTP pending: SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password))"
+      },
+      {
+        "id": "vlog_1793180794104",
+        "mobileNumber": "9876543210",
+        "email": "test@divya.com",
+        "timestamp": "28/10/2026, 3:16:34 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP generated (SMTP pending: SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password))"
+      },
+      {
+        "id": "vlog_1793180453149",
+        "mobileNumber": "8449385256",
+        "email": "nraj9811@gmail.com",
+        "timestamp": "28/10/2026, 3:10:53 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP generated (SMTP pending: SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password))"
+      },
+      {
+        "id": "vlog_1793180330044",
+        "mobileNumber": "8449385256",
+        "email": "nraj9811@gmail.con",
+        "timestamp": "28/10/2026, 3:08:50 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP generated (SMTP pending: SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password))"
+      },
+      {
+        "id": "vlog_1793179058329",
+        "mobileNumber": "9876543210",
+        "email": "divya@example.com",
+        "timestamp": "28/10/2026, 2:47:38 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP sent to email, awaiting verification"
+      }
+    ]
+  },
+  "settings": {
+    "siteName": "DIYUUUU — For Your Cloudy Days ☁️💜",
+    "heroHeading": "DIYUUUU ☁️💜",
+    "heroSubtitle": "For your cloudy days.",
+    "heroSupporting": "A little corner of the internet, made with care, just for you.",
+    "enterButtonText": "Enter your little world",
+    "recipientName": "Divya",
+    "recipientNickname": "Diyuuuu",
+    "creatorName": "Nishant Raj",
+    "creatorRespectfulNickname": "Sir jiii",
+    "nicknames": [
+      "Diyuuuu",
+      "Beendani ji",
+      "Madam Ji",
+      "bbg",
+      "Babyyyyy",
+      "My gurllll",
+      "Bauni",
+      "Butki",
+      "Mharo gigalooooooo",
+      "Chhotu Master",
+      "Golgappa Queen",
+      "Drama Queen ji",
+      "Rasgulla ji",
+      "Kaju Katli",
+      "Pari ji",
+      "Pocket Dynamite",
+      "Gusse wali Naagin",
+      "Sweetu",
+      "Laddu Gopal ji",
+      "Cheeku",
+      "Tamatar ji",
+      "Jaanu",
+      "Nakhro rani",
+      "Pyaari Titli",
+      "Sleepy Panda",
+      "Chashmish ji",
+      "Teddy Bear",
+      "Gudiya",
+      "Barbie Doll",
+      "Princess of Sir jiii",
+      "Dil ki Dhadkan",
+      "Chulbuli rani"
+    ],
+    "activeTheme": "forest",
+    "timezone": "Asia/Kolkata",
+    "footerMessage": "Crafted with warmth for Diyuuuu. Aap jab chahein, yahan aakar sukoon mehsoos kar sakte ho.",
+    "calendarEnabled": true,
+    "cycleTrackingEnabled": true,
+    "reflectionsEnabled": true,
+    "ambientRainAudioEnabled": false,
+    "animationsEnabled": true
+  },
+  "periodCareDay5": {
+    "dayNumber": 5,
+    "title": "Day 5: Gentle Recovery & Care 🌸🩸",
+    "subtitle": "Aapne 5 din bohot himmat se sambhale hain, ab bas aaram karne ka waqt hai.",
+    "summary": "Day 5 period ka transition day hota hai—heavy flow kam ho raha hota hai, par sharir thaka rehta hai aur thodi backache ho sakti hai. Aap bilkul rest kijiye.",
+    "comfortTips": [
+      {
+        "id": "tip-1",
+        "title": "Garam Paani & Heat Pad",
+        "desc": "Lower abdomen aur back par thoda gentle heat dijiye, muscles relax ho jaate hain.",
+        "icon": "flame"
+      },
+      {
+        "id": "tip-2",
+        "title": "Adrak & Elaichi Wali Chai",
+        "desc": "Garam chai body ko soothing warmth deti hai aur bloating kam karti hai.",
+        "icon": "coffee"
+      },
+      {
+        "id": "tip-3",
+        "title": "Soft Blanket & Pillow Support",
+        "desc": "Tangein mod kar pillow ke support se letiye, back par relief milega.",
+        "icon": "bed"
+      },
+      {
+        "id": "tip-4",
+        "title": "Dark Chocolate & Sweet Treat",
+        "desc": "Thoda sa dark chocolate mood aur serotonin boost karta hai. No guilt!",
+        "icon": "cookie"
+      }
+    ],
+    "reassuranceMessage": "Aap bohot strong ho aur aapne itne pain ko muskuraate hue jhela hai. Aaj aapka Sir jiii aapko special hug aur rest prescribe karta hai!"
+  },
+  "nicknameGenerator": {
+    "nicknames": [
+      {
+        "name": "Beendani ji",
+        "meaning": "Aapka dramatic aur royal avatar! Jab aap full attitude dikhate ho."
+      },
+      {
+        "name": "Madam Ji",
+        "meaning": "Jab aap boss ban kar order dete ho aur sabko sunna padta hai!"
+      },
+      {
+        "name": "bbg",
+        "meaning": "The sweetest, coolest baby girl in the entire universe."
+      },
+      {
+        "name": "Babyyyyy",
+        "meaning": "Pure softness, innocence aur endless cuteness."
+      },
+      {
+        "name": "My gurllll",
+        "meaning": "Nishant ka sabse bada pride aur favourite insaan."
+      },
+      {
+        "name": "Diyuuuu",
+        "meaning": "Aapki aatma ka sabse pyara aur sachha naam."
+      },
+      {
+        "name": "Bauni",
+        "meaning": "Chhotu si height par 1000% badmashi aur cute nakhre!"
+      },
+      {
+        "name": "Butki",
+        "meaning": "Pocket-sized aafat jo sabse pyare lagte ho."
+      },
+      {
+        "name": "Mharo gigalooooooo",
+        "meaning": "Traditional Rajasthani warmth, pyaar aur hasi!"
+      },
+      {
+        "name": "Chhotu Master",
+        "meaning": "Sabko gyaan dene wale aur sab sikhane wale cute boss."
+      },
+      {
+        "name": "Golgappa Queen",
+        "meaning": "Thode teekhe aur bohot saare sweet!"
+      },
+      {
+        "name": "Drama Queen ji",
+        "meaning": "Oscar-winning daily expressions aur cute narazgi."
+      },
+      {
+        "name": "Rasgulla ji",
+        "meaning": "Bohot soft, meethi aur pyari si muskaan."
+      },
+      {
+        "name": "Kaju Katli",
+        "meaning": "Sabse premium, classy aur beloved mithai jaisi."
+      },
+      {
+        "name": "Pari ji",
+        "meaning": "Jo bina pankhon ke bhi aasman jaisi sundar lagte ho."
+      },
+      {
+        "name": "Pocket Dynamite",
+        "meaning": "Chhoti si jaan par dhamakedaar baatein aur energy!"
+      },
+      {
+        "name": "Gusse wali Naagin",
+        "meaning": "Jab cute sa fuffkaar maarte ho aur gussa dikhate ho!"
+      },
+      {
+        "name": "Sweetu",
+        "meaning": "Dil se sabse sachhi aur caring baby girl."
+      },
+      {
+        "name": "Laddu Gopal ji",
+        "meaning": "Ghar ki sabse laadli aur pyari shararat."
+      },
+      {
+        "name": "Cheeku",
+        "meaning": "Gol-matol cute cheeks jinhe kheenchne ka mann kare."
+      },
+      {
+        "name": "Tamatar ji",
+        "meaning": "Jab thode se sharma kar ya gusse mein laal ho jaate ho!"
+      },
+      {
+        "name": "Jaanu",
+        "meaning": "Sir jiii ke dil ka sabse keemti tukda."
+      },
+      {
+        "name": "Nakhro rani",
+        "meaning": "Har baat par 100 nakhre jo humein bohot acche lagte hain."
+      },
+      {
+        "name": "Pyaari Titli",
+        "meaning": "Idhar se udhar khushi bikherti hui gentle soul."
+      },
+      {
+        "name": "Sleepy Panda",
+        "meaning": "Blanket mein ghus kar ghanton sone wali cutie."
+      },
+      {
+        "name": "Chashmish ji",
+        "meaning": "Chashme ke piche chamakti hui sabse khoobsurat aankhein."
+      },
+      {
+        "name": "Teddy Bear",
+        "meaning": "Jisko bas hug karke saara din baithne ka mann kare."
+      },
+      {
+        "name": "Gudiya",
+        "meaning": "Masoom si, jisko kisi ki nazar na lage."
+      },
+      {
+        "name": "Barbie Doll",
+        "meaning": "Ekdam prettiest angel with royal vibes."
+      },
+      {
+        "name": "Princess of Sir jiii",
+        "meaning": "Jiske saare hukum aur wishes sar-aankhon par!"
+      },
+      {
+        "name": "Dil ki Dhadkan",
+        "meaning": "Jiske bina sab kuch adhoora lagta hai."
+      },
+      {
+        "name": "Chulbuli rani",
+        "meaning": "Har pal masti aur hasi failane wali!"
+      }
+    ]
+  },
+  "comfortCorner": {
+    "categories": [
+      {
+        "id": "heavy-day",
+        "title": "When the day feels heavy",
+        "hindiTitle": "Jab din thoda bhaari lage",
+        "icon": "cloud-rain",
+        "messages": [
+          "Har din ko perfect hona zaroori nahi hai. Aap apne pace par chalte ho, wahi sabse bada proof hai.",
+          "Aaj agar sab kuch thoda cloudy lag raha hai, toh aap apne liye thoda waqt nikaal sakte ho.",
+          "Aapko sab kuch ek saath theek karne ki zaroorat nahi hai. Bas ek deep breath lijiye aur aaram karte ho.",
+          "Aap jaise sochte ho aur jaise sambhalte ho, bohot pyare aur strong lagte ho."
+        ]
+      },
+      {
+        "id": "small-break",
+        "title": "When you need a small break",
+        "hindiTitle": "Chhota sa sukoon bhara break",
+        "icon": "coffee",
+        "messages": [
+          "Ek cup garam chai, thodi si shanti aur apne liye kuch minutes. Aap aaram se waqt bitate ho.",
+          "Phone ko thodi der side mein rakh kar khidki ke paas baithiye. Baarish ki awaaz sunte ho.",
+          "Aap thoda stretch karte ho, paani peete ho, aur bina kisi guilt ke rest karte ho."
+        ]
+      },
+      {
+        "id": "overwhelmed",
+        "title": "When you feel overwhelmed",
+        "hindiTitle": "Jab baatein bohot zyada lagein",
+        "icon": "wind",
+        "messages": [
+          "Duniya ka saara bojh aapke kandhon par nahi hai. Aap ek samay par bas ek hi chhota kadam uthate ho.",
+          "Agar koi baat pareshaan kare, toh thodi der usse door hokar saans lijiye. Sab theek ho jayega.",
+          "Aapki feelings bilkul valid hain. Aap khud par bilkul sakht nahi bante ho."
+        ]
+      },
+      {
+        "id": "comforting",
+        "title": "When you want something comforting",
+        "hindiTitle": "Jab thoda sukoon chahiye ho",
+        "icon": "heart",
+        "messages": [
+          "Yeh chhota sa corner hamesha aapke liye yahin hai. Aap jab bhi chahein yahan aate ho.",
+          "Aap jab muskuraate ho, sabse pyare lagte ho. Par jab mann na ho, tab bhi aap utne hi precious ho.",
+          "Warm chai, halki baarish, aur aapka yeh chhota sa space jahan aap sukoon paate ho."
+        ]
+      },
+      {
+        "id": "rest-reminder",
+        "title": "When you need a reminder to rest",
+        "hindiTitle": "Aaram karne ki chhoti si yaad",
+        "icon": "moon",
+        "messages": [
+          "Aapko har waqt productive rehna zaroori nahi hai. Rest bhi utna hi important hota hai.",
+          "Aapki neend aur aapka sukoon sabse pehle aana chahiye. Aap bina kisi fikar ke so sakte ho.",
+          "Aaj ke din aapne bohot achha kiya. Ab aap aaram se rest karte ho."
+        ]
+      },
+      {
+        "id": "tiny-smile",
+        "title": "When you want a tiny smile",
+        "hindiTitle": "Ek pyari si muskaan ke liye",
+        "icon": "sparkles",
+        "messages": [
+          "Aapki chhoti chhoti baatein aur expressions kitne cute hote hain! Aap jab haste ho sab theek lagta hai.",
+          "Chhoti si progress bhi real progress hoti hai. Aap bohot pyare lagte ho.",
+          "Aapka Sir jiii hamesha aapke sukoon aur muskaan ki wish karta hai."
+        ]
+      },
+      {
+        "id": "appreciated",
+        "title": "When you want to feel appreciated",
+        "hindiTitle": "Aapki sachhi ahmiyat",
+        "icon": "star",
+        "messages": [
+          "The way you see things from your own point of view is truly special. Aap alag sochte ho.",
+          "Aap jab bolte ho aur presence dete ho, aas-paas ka mahaul kitna calm aur achha ho jaata hai.",
+          "Aapki individuality hi aapki sabse badi khoobsurti hai. Aap jaise ho, waise hi pyare lagte ho."
+        ]
+      }
+    ]
+  },
+  "notes": [
+    {
+      "id": "note-1",
+      "title": "Chhoti si baat yaad rakhne ke liye",
+      "body": "Aapko hamesha sab kuch pehle se tay karne ki zaroorat nahi hoti. Aap jis dhang se sab handle karte ho, woh bohot khoobsurat hai.",
+      "category": "Little reminders",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 1
+    },
+    {
+      "id": "note-2",
+      "title": "Day 5 Period Care Reminder 🌸",
+      "body": "Aaj periods ka 5th day hai. Thoda pet aur peeth mein dard ya thakan ho sakti hai. Aap garam paani pijiye, blanket lijiye aur aaram karte ho.",
+      "category": "Period care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 2
+    },
+    {
+      "id": "note-3",
+      "title": "Cloudy days are gentle days ☁️",
+      "body": "Baarish ka mausam sab kuch dho kar saaf kar deta hai. Waise hi cloudy days humein thoda rukne aur apni energy wapas paane ka mauka dete hain.",
+      "category": "Cloudy-day notes",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 3
+    },
+    {
+      "id": "note-4",
+      "title": "Chai aur khamoshi ☕",
+      "body": "Shaam ko cup pakad kar baithna, bina kisi jaldbaazi ke, sabse bada sukoon hota hai jo aap khud ko dete ho.",
+      "category": "Things worth remembering",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 4
+    },
+    {
+      "id": "note-5",
+      "title": "Aapka Masoom Gussa 😾",
+      "body": "Aap jab thoda naak chadhate ho ya chhotu sa gussa karte ho na, lagta hai duniya ki saari cuteness ek jagah ikatthi ho gayi hai!",
+      "category": "Little reminders",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 5
+    },
+    {
+      "id": "note-6",
+      "title": "Cramps Relief Protocol 🕯️",
+      "body": "Heat pad ko pet par rakhiye, pairon ke niche soft pillow lagaiye aur ek cup adrak-elaichi chai sip kijiye. Sir jiii is sending healing hugs!",
+      "category": "Period care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 6
+    },
+    {
+      "id": "note-7",
+      "title": "No Guilt Rest Day 🧸",
+      "body": "Aaj agar aapne bistar se uthne ka mann na banaya ho, toh bilkul guilt mat lijiye. Sharir jab heal ho raha ho, toh aaram hi sabse bada kaam hota hai.",
+      "category": "Self care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 7
+    },
+    {
+      "id": "note-8",
+      "title": "The Way You Laugh ✨",
+      "body": "Aap jab khul kar haste ho, toh kamre mein achanak roshni si aa jaati hai. Aapki muskaan bohot precious hai.",
+      "category": "Things worth remembering",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 8
+    },
+    {
+      "id": "note-9",
+      "title": "A Hug From Afar 🫂",
+      "body": "Aankhein band kijiye aur mehsus kijiye: ek lamba, garam aur safe hug jo aapke saare dard aur thakan ko absorb kar raha hai.",
+      "category": "Comfort notes",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 9
+    },
+    {
+      "id": "note-10",
+      "title": "Sweet Cravings Allowed 🍫",
+      "body": "Chocolates, pastries, ya jo bhi meetha khane ka mann ho, bindass khaiye. Period hormones need sweet dopamine!",
+      "category": "Period care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 10
+    },
+    {
+      "id": "note-11",
+      "title": "Aapki Khoobsurat Aatma 🌸",
+      "body": "Aap jaise logon ki parvah karte ho aur dil se baatein bolte ho, waisa koi nahi kar sakta. Aap bohot special lagte ho.",
+      "category": "Little reminders",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 11
+    },
+    {
+      "id": "note-12",
+      "title": "Baarish Ki Khidki 🌧️",
+      "body": "Boondon ko kaanch par fisalte dekhna aur sochna ki life mein bhi har toofan ke baad aisi hi thandak aati hai.",
+      "category": "Cloudy-day notes",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 12
+    },
+    {
+      "id": "note-13",
+      "title": "Day 6 Pe Dheere Dheere Glow 🕊️",
+      "body": "Day 5 ke baad dard ka aakhri pehra chala jaata hai. Kal se aap bilkul fresh feel karenge, Beendani ji!",
+      "category": "Period care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 13
+    },
+    {
+      "id": "note-14",
+      "title": "Sir jiii Ka Constant Vaada 💍",
+      "body": "Chahe aap bohot khush ho ya bohot pareshaan, aapka Sir jiii hamesha aapke paas rahega. Never ever doubt that.",
+      "category": "Things worth remembering",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 14
+    },
+    {
+      "id": "note-15",
+      "title": "Sip Some Water 💧",
+      "body": "Hydration period bloating ko 50% kam kar deta hai. Gunguna paani peete rahiye aur deep breaths lete ho.",
+      "category": "Self care",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 15
+    },
+    {
+      "id": "note-16",
+      "title": "You Are Doing Great 💜",
+      "body": "Aapne itne dino ka dard aur mood shifts akele jhele hain. You are so strong, my Diyuuuu. I am so proud of you.",
+      "category": "Little reminders",
+      "date": "2026-10-28",
+      "published": true,
+      "order": 16
+    }
+  ],
+  "letters": [
+    {
+      "id": "letter-main",
+      "title": "A Letter for Your Cloudy Days",
+      "greeting": "Dear Diyuuuu,",
+      "body": "Aap jab bhi yeh letter padhte ho, chahe din kaisa bhi raha ho, I hope yeh chhota sa corner aapko thoda sukoon aur warmth de sake.\n\nYeh website maine isliye banayi taaki aapke paas hamesha ek aisi jagah ho jahan koi shor na ho, koi expectation na ho, aur na hi koi pressure ho. Jab baahar cloudy lage ya sharir thoda thaka hua ho (khaaskar in dino), toh aap yahan aakar baarish ki awaaz sunte ho, soft music chalate ho, ya bas shaant pal bitate ho.\n\nAap jaise ho, bohot genuine aur special lagte ho. Har din perfect nahi hota, par aapka sukoon hamesha zaroori hai.\n\nAap jab chahein, apne pace par explore karte ho. Yeh chhota sa world hamesha yahin rahega, aapke liye.",
+      "signature": "Always wishing you peace & warm chai,\nNishant (Your Sir jiii)",
+      "date": "October 2026",
+      "published": true
+    }
+  ],
+  "appreciationCards": [
+    {
+      "id": "appr-1",
+      "title": "The way you see things",
+      "message": "Aapka perspective bohot honest aur thoughtful hota hai. You notice what others miss.",
+      "icon": "eye",
+      "order": 1,
+      "published": true
+    },
+    {
+      "id": "appr-2",
+      "title": "Your little expressions",
+      "message": "Aapke cute expressions aur chhoti chhoti baaton par react karna makes everything brighter. Aap jab haste ho bohot pyare lagte ho.",
+      "icon": "smile",
+      "order": 2,
+      "published": true
+    },
+    {
+      "id": "appr-3",
+      "title": "Calm strength",
+      "message": "Mushkil waqt mein bhi aap jis grace aur patience ke saath aage badhte ho, that is truly admirable.",
+      "icon": "shield",
+      "order": 3,
+      "published": true
+    },
+    {
+      "id": "appr-4",
+      "title": "Your individuality",
+      "message": "You stay true to who you are, without pretending. Aap jaise ho, wahi aapki sabse badi khoobsurti hai.",
+      "icon": "sparkles",
+      "order": 4,
+      "published": true
+    },
+    {
+      "id": "appr-5",
+      "title": "Making simple moments memorable",
+      "message": "A cup of chai, a cool breeze, or a simple conversation becomes something worth holding onto when you are there.",
+      "icon": "coffee",
+      "order": 5,
+      "published": true
+    }
+  ],
+  "memories": [
+    {
+      "id": "mem-1",
+      "title": "First Rainy Afternoon",
+      "description": "Khidki ke paas halki boonda-baandi aur thandak. A serene memory that always brings calm.",
+      "category": "Peaceful moments",
+      "symbol": "leaf",
+      "date": "A cozy day",
+      "order": 1,
+      "published": true
+    },
+    {
+      "id": "mem-2",
+      "title": "A Warm Cup of Chai",
+      "description": "Chai ki khushboo aur halki dhoop cloudy aasmaan ke beech. Simple comforts that heal the heart.",
+      "category": "Little pleasures",
+      "symbol": "coffee",
+      "date": "Every tea time",
+      "order": 2,
+      "published": true
+    },
+    {
+      "id": "mem-3",
+      "title": "Forest Whispers",
+      "description": "Tall green pine trees swaying in the misty rain. A peaceful sanctuary made of memories and hope.",
+      "category": "Nature",
+      "symbol": "plant",
+      "date": "Evergreen",
+      "order": 3,
+      "published": true
+    },
+    {
+      "id": "mem-4",
+      "title": "Soft Evening Stars",
+      "description": "Baadal hatne ke baad aasmaan mein aane wale pehle tare. Har cloudy din ke baad roshni aati hai.",
+      "category": "Night sky",
+      "symbol": "star",
+      "date": "Quiet nights",
+      "order": 4,
+      "published": true
+    }
+  ],
+  "familyVisitEvent": {
+    "title": "Family Visit: Bua & Dadi's Home",
+    "date": "2026-11-08",
+    "startTime": "11:00 AM",
+    "endTime": "06:00 PM",
+    "message": "A warm and sweet day with family. Aap araam se waqt bitate ho aur achhe se enjoy karte ho!",
+    "visible": true,
+    "autoArchive": true,
+    "order": 1
+  },
+  "todayPlan": {
+    "defaultActivity": "Ek cup garam adrak chai, thodi der relaxing music, aur bina kisi rush ke apne favourite tasks.",
+    "supportiveNote": "Aap apne pace par chalte ho. No hurry, no pressure."
+  },
+  "surpriseEnvelope": {
+    "previewTitle": "A Special Note for Diyuuuu 💌",
+    "hint": "Tap gently to unfold the letter inside...",
+    "letterContent": "Dear Diyuuuu,\n\nIf you are opening this today, here is a small reminder:\n\nAapko saara bojh akele uthane ki zaroorat nahi hai. It is completely okay to let go of expectations, put on warm socks, wrap yourself in a blanket, and just be.\n\nKhaaskar aaj jab aapka period ka 5th day hai, aap bas aaram karte ho. Aapka Sir jiii hamesha aapke sukoon aur muskaan ki wish karta hai.\n\nTake care of yourself today. You are cherished! ☁️💜",
+    "signature": "With warm regards,\nNishant Raj (Sir jiii)"
+  },
+  "surpriseEnvelopes": [
+    {
+      "id": "env-1",
+      "title": "For When You Feel Tired 🌸",
+      "subtitle": "Lavender Seal — Deep Comfort",
+      "sealColor": "#8b5cf6",
+      "previewTitle": "A Soft Whispered Hug 💌",
+      "letterContent": "Meri sabse pyari Diyuuuu,\n\nAap itna sab kuch sambhalte ho aur kabhi complain nahi karte. Lekin aaj aapka 5th day hai period ka, sharir thaka hua hai aur aapko sach mein rest ki zaroorat hai.\n\nAapko lagta hoga ki sab perfect hona chahiye, par aap mere liye waise hi perfect ho jaise aap sochte ho, bolte ho, aur muskuraate ho. Blanket lapet lijiye, Sir jiii ka diya hua warm hug mehsoos kijiye aur bas thoda aaram karte ho.\n\nAapki har takleef meri hai. Take it easy today, bbg.",
+      "signature": "Sirf aapka,\nNishant Raj (Sir jiii) 💜",
+      "opened": false
+    },
+    {
+      "id": "env-2",
+      "title": "For When Your Mood Swings 🍫",
+      "subtitle": "Amber Seal — Sweet Reassurance",
+      "sealColor": "#f59e0b",
+      "previewTitle": "Sweet Cravings & No Guilt 💌",
+      "letterContent": "Beendani ji,\n\nJab periods ke dauraan achanak chidchidahat ho ya rona aaye bina kisi wajah ke, toh yaad rakhna ki yeh bas hormones ki shaitaani hai! Aap bilkul theek ho.\n\nAap jitna chahein chocolates khate ho, gussa karte ho, nakhre dikhate ho—aapka Sir jiii yahan aapke saare nakhre uthane ke liye ready baitha hai. Aap jab thode gusse mein hote ho na, tab bhi sabse cute lagte ho!\n\nEat your sweets without guilt!",
+      "signature": "Always by your side,\nNishant (Sir jiii) 🍯",
+      "opened": false
+    },
+    {
+      "id": "env-3",
+      "title": "For Cramps & Body Ache 🕯️",
+      "subtitle": "Rose Seal — Healing Warmth",
+      "sealColor": "#f43f5e",
+      "previewTitle": "A Warm Heating Pad & Love 💌",
+      "letterContent": "Meri Babyyyyy,\n\nI know pet mein aur lower back mein jo ajeeb sa heavy pain aur cramps hote hain, woh kitne exhausting hote hain. Kahaash main wahan hota aur aapka sar daba sakta ya heat pad rakh sakta.\n\nPar abhi ke liye, sochiye main aapke bilkul paas hoon, aapka haath thaame hue aur aapko ek tight soft hug de raha hoon. Garam chai pijiye aur aankhein band karke lofi music sunte ho. Dard jaldi theek ho jayega.",
+      "signature": "With infinite kisses on your forehead,\nNishant Raj 🌸",
+      "opened": false
+    },
+    {
+      "id": "env-4",
+      "title": "For When You Feel Insecure 🌿",
+      "subtitle": "Emerald Seal — Pure Truth",
+      "sealColor": "#10b981",
+      "previewTitle": "The Purest Soul I Know 💌",
+      "letterContent": "Diyuuuu,\n\nKabhi bhi apne aap par shaq mat karna. Aap jaisi ho, jitni masoom, jitni loyal aur jitni dedicated ho, duniya mein koi aap jaisa nahi hai. Aapki baatein, aapka gussa, aapka hasna sab kuch mere dil ke sabse kareeb hai.\n\nAap jis tarah har baat ko dil se mehsus karte ho, wahi aapko sabse alag banata hai. You are my pride, my gurllll. Hamesha sar utha kar chalte ho aur khush rehte ho.",
+      "signature": "Proudly yours,\nNishant (Sir jiii) 🌿",
+      "opened": false
+    },
+    {
+      "id": "env-5",
+      "title": "A Promise for the Future ✨",
+      "subtitle": "Gold Seal — Eternal Bond",
+      "sealColor": "#eab308",
+      "previewTitle": "My Constant Forever 💌",
+      "letterContent": "Meri Madam Ji,\n\nChahe din cloudy ho ya dhoop khili ho, chahe period ka heavy flow ho ya calm peaceful shaam, Nishant hamesha aapke saath khada rahega. Aapko kabhi akele suffer karne ki zaroorat nahi padegi.\n\nYeh website aapka hamesha ka sanctuary hai. Jab bhi dil ghabraye, yahan aate ho, notes padhte ho, aur yaad rakhte ho ki koi hai jo aapse bohot zyada pyaar aur respect karta hai. You are truly precious to me.",
+      "signature": "Forever & always,\nSir jiii (Nishant Raj) ☁️💜",
+      "opened": false
+    }
+  ],
+  "periodDays": {
+    "1": {
+      "dayNumber": 1,
+      "title": "Day 1: Heavy Flow & Arrival 🩸",
+      "subtitle": "Dard aur cramps ka sabse intense din. Bilkul araam kijiye.",
+      "summary": "Pehle din uterine contractions tez hote hain aur energy zero feel hoti hai.",
+      "comfortTips": [
+        {
+          "id": "p1",
+          "title": "Hot Water Bottle",
+          "desc": "Lower abdomen par garam sikayi karein.",
+          "icon": "flame"
+        },
+        {
+          "id": "p2",
+          "title": "Adrak Kaadha / Chai",
+          "desc": "Antispasmodic chai cramps ko shant karti hai.",
+          "icon": "coffee"
+        },
+        {
+          "id": "p3",
+          "title": "Zero Work Pressure",
+          "desc": "Sirf soiye aur resting posture mein rahiye.",
+          "icon": "bed"
+        },
+        {
+          "id": "p4",
+          "title": "Loose Cotton Clothes",
+          "desc": "Tummy par tight waistband bilkul mat pehniye.",
+          "icon": "feather"
+        }
+      ],
+      "reassuranceMessage": "Aapka yeh mushkil din bhi guzar jayega. Aap bohot pyare aur strong lagte ho."
+    },
+    "2": {
+      "dayNumber": 2,
+      "title": "Day 2: Peak Intensity 🌸",
+      "subtitle": "Heavy flow aur body ache ka peak. Sir jiii ki taraf se gentle cuddles.",
+      "summary": "Day 2 par bleeding zyada hoti hai aur backache feel ho sakti hai.",
+      "comfortTips": [
+        {
+          "id": "p2-1",
+          "title": "Pillow Under Knees",
+          "desc": "Peeth ke bal let kar ghutno ke niche pillow rakhein.",
+          "icon": "bed"
+        },
+        {
+          "id": "p2-2",
+          "title": "Dark Chocolate Bite",
+          "desc": "Endorphins release honge aur mood stable hoga.",
+          "icon": "cookie"
+        },
+        {
+          "id": "p2-3",
+          "title": "Warm Soup / Khichdi",
+          "desc": "Halka aur garam khana pachega aasaani se.",
+          "icon": "coffee"
+        },
+        {
+          "id": "p2-4",
+          "title": "Frequent Hydration",
+          "desc": "Gunguna paani sip-sip karke peete rahiye.",
+          "icon": "droplet"
+        }
+      ],
+      "reassuranceMessage": "Aapne peak din sambhal liya hai, ab dard kam hone lagega."
+    },
+    "3": {
+      "dayNumber": 3,
+      "title": "Day 3: Gradual Relief 🌿",
+      "subtitle": "Flow thoda settle hone lagta hai, par thakan rehti hai.",
+      "summary": "Cramps ki sharp intensity kam hone lagti hai, emotional sensitivity thodi rehti hai.",
+      "comfortTips": [
+        {
+          "id": "p3-1",
+          "title": "Gentle Cat-Cow Stretch",
+          "desc": "Lower back ko halka sa stretch karein bed par hi.",
+          "icon": "heart"
+        },
+        {
+          "id": "p3-2",
+          "title": "Chamomile / Green Tea",
+          "desc": "Nerves ko soothing calm milega.",
+          "icon": "coffee"
+        },
+        {
+          "id": "p3-3",
+          "title": "Warm Foot Soak",
+          "desc": "Garam paani mein pair daalne se blood circulation theek hota hai.",
+          "icon": "flame"
+        }
+      ],
+      "reassuranceMessage": "Aadhe se zyada cycle complete ho gayi hai. Well done, Diyuuuu!"
+    },
+    "4": {
+      "dayNumber": 4,
+      "title": "Day 4: Winding Down 🌤️",
+      "subtitle": "Bleeding moderate to light ho gayi hai, energy wapas aane lagi hai.",
+      "summary": "Uterus relax ho raha hai. Bloating aur heaviness kam hone lagti hai.",
+      "comfortTips": [
+        {
+          "id": "p4-1",
+          "title": "Short Cozy Stroll",
+          "desc": "Kamre mein ya balcony mein taazi hawa lein.",
+          "icon": "wind"
+        },
+        {
+          "id": "p4-2",
+          "title": "Fruit & Nuts Snack",
+          "desc": "Iron aur magnesium replenishment ke liye.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "p4-3",
+          "title": "Read / Listen to Music",
+          "desc": "Cozy room mein rain sounds sunte ho.",
+          "icon": "music"
+        }
+      ],
+      "reassuranceMessage": "Aapki energy dheere dheere laut rahi hai. Aap bohot pyare lagte ho."
+    },
+    "5": {
+      "dayNumber": 5,
+      "title": "Day 5: Gentle Recovery & Care 🌸🩸",
+      "subtitle": "Aapne 5 din bohot himmat se sambhale hain, ab bas aaram karne ka waqt hai.",
+      "summary": "Day 5 period ka transition day hota hai—heavy flow kam ho raha hota hai, par sharir thaka rehta hai.",
+      "comfortTips": [
+        {
+          "id": "p5-1",
+          "title": "Garam Paani & Heat Pad",
+          "desc": "Muscles relax ho jaate hain lower abdomen par.",
+          "icon": "flame"
+        },
+        {
+          "id": "p5-2",
+          "title": "Adrak & Elaichi Wali Chai",
+          "desc": "Garam chai body ko soothing warmth deti hai.",
+          "icon": "coffee"
+        },
+        {
+          "id": "p5-3",
+          "title": "Soft Blanket & Support",
+          "desc": "Tangein mod kar pillow support se aaram karein.",
+          "icon": "bed"
+        },
+        {
+          "id": "p5-4",
+          "title": "Sweet Treat & Hugs",
+          "desc": "Nishant Raj ki taraf se unlimited sweet cuddles.",
+          "icon": "cookie"
+        }
+      ],
+      "reassuranceMessage": "Aap bohot strong ho aur aapne itne pain ko muskuraate hue jhela hai. Sir jiii aapko special hug prescribe karta hai!"
+    },
+    "6": {
+      "dayNumber": 6,
+      "title": "Day 6: Final Taper & Light Flow 🕊️",
+      "subtitle": "Bleeding lagbhag khatam ho rahi hai. Post-period glow start hone wala hai!",
+      "summary": "Faint spotting ya minimal flow. Hormones rise karne lagte hain aur mood fresh ho jaata hai.",
+      "comfortTips": [
+        {
+          "id": "p6-1",
+          "title": "Warm Refreshing Shower",
+          "desc": "Body ko bohot halka aur rejuvenated feel hoga.",
+          "icon": "droplet"
+        },
+        {
+          "id": "p6-2",
+          "title": "Light Stretching",
+          "desc": "Gentle yoga posture se body stiffness dur hogi.",
+          "icon": "sun"
+        },
+        {
+          "id": "p6-3",
+          "title": "Pantry Treats & Chai",
+          "desc": "Apne pasandeeda snack enjoy karte ho.",
+          "icon": "coffee"
+        }
+      ],
+      "reassuranceMessage": "Kal se aap bilkul fresh aur energetic feel karoge! You made it through, bbg!"
+    },
+    "7": {
+      "dayNumber": 7,
+      "title": "Day 7: Fresh Beginning & Sparkling Energy ✨",
+      "subtitle": "Cycle officially complete! Aapka natural cheerful avatar wapas aa gaya.",
+      "summary": "Bleeding fully end ho chuki hai. Estrogen rise ho raha hai, energy aur happiness peak par hai.",
+      "comfortTips": [
+        {
+          "id": "p7-1",
+          "title": "Celebrate the Fresh Start",
+          "desc": "Ek pyara sa outfit pehniye aur muskuraate rahiye.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "p7-2",
+          "title": "Go Outdoors",
+          "desc": "Taazi dhoop aur hawa lijiye.",
+          "icon": "sun"
+        },
+        {
+          "id": "p7-3",
+          "title": "Sweet Message to Nishant",
+          "desc": "Sir jiii ko batayein ki aap ab 100% fine ho!",
+          "icon": "heart"
+        }
+      ],
+      "reassuranceMessage": "Aapka pura period cycle successfully complete hua! Sir jiii is so happy for you! ☁️💜"
+    }
+  },
+  "cycleTracker": {
+    "previousCycleStart": "2026-09-29",
+    "previousCycleEnd": "2026-10-04",
+    "currentCycleStart": "2026-10-24",
+    "cycleLengthDays": 28,
+    "periodDurationDays": 6,
+    "currentDay": 5,
+    "logs": [
+      {
+        "id": "clog_1793179067810",
+        "date": "2026-10-28",
+        "cycleDay": 5,
+        "flow": "Light Flow",
+        "crampLevel": 4,
+        "mood": "Cozy & Relaxed",
+        "symptoms": [
+          "Lower back ache",
+          "Mild fatigue"
+        ],
+        "cravings": [
+          "Dark chocolate",
+          "Hot ginger chai"
+        ],
+        "note": "Sir jiii, cramps ab bohot kam hain!",
+        "submittedAt": "28/10/2026, 2:47:47 pm"
+      }
+    ]
+  },
+  "cuddleStats": {
+    "totalKisses": 144,
+    "totalHugs": 84,
+    "lastInteraction": "2026-10-28T09:17:27.240Z",
+    "lastKissIntensity": "Passionate Lip Kiss",
+    "lastHugType": "",
+    "lastMessage": "Sir jiii, bohot craving ho rahi hai!"
+  },
+  "miniGames": {
+    "stars": {
+      "id": "stars",
+      "name": "Catch the Stars",
+      "description": "Catch the falling peaceful stars before they drift away.",
+      "enabled": true,
+      "highScore": 12,
+      "playCount": 5
+    },
+    "heart": {
+      "id": "heart",
+      "name": "Find the Hidden Heart",
+      "description": "Explore the cozy room and find the gentle heart hidden among the comforting objects.",
+      "enabled": true,
+      "highScore": 0,
+      "playCount": 3
+    },
+    "mood": {
+      "id": "mood",
+      "name": "Mood Cloud",
+      "description": "Select how the weather feels inside your mind today and receive a tailored gentle thought.",
+      "enabled": true,
+      "highScore": 0,
+      "playCount": 7
+    },
+    "memory": {
+      "id": "memory",
+      "name": "Tiny Memory Match",
+      "description": "Flip and match the cozy forest symbols (leaf, tea cup, star, flower, rain cloud, warm lamp).",
+      "enabled": true,
+      "highScore": 8,
+      "playCount": 4
+    },
+    "garden": {
+      "id": "garden",
+      "name": "Little Garden",
+      "description": "Plant and water your peaceful bonsai, jasmine, or lavender plant and watch it gently blossom.",
+      "enabled": true,
+      "highScore": 0,
+      "playCount": 6
+    }
+  },
+  "playlists": [
+    {
+      "id": "cloudy-day",
+      "name": "Cloudy Day Comfort",
+      "description": "Gentle rain, warm acoustic notes, and lofi serenity"
+    },
+    {
+      "id": "period-care",
+      "name": "Day 5 Rest & Recovery",
+      "description": "Ultra soft frequencies for cramps ease, blanket warmth & deep nap"
+    },
+    {
+      "id": "forest-lullaby",
+      "name": "Forest & Rain Ambient",
+      "description": "Deep soothing nature and soft piano melodies"
+    },
+    {
+      "id": "chai-study",
+      "name": "Chai & Late Night Reading",
+      "description": "Gentle nostalgic chords for reading without distraction"
+    }
+  ],
+  "musicTracks": [
+    {
+      "id": "track-1",
+      "title": "Rain on the Window & Soft Chords",
+      "artist": "Nishant Raj / Cozy Soundscapes",
+      "description": "Gentle raindrops sliding down the glass pane accompanied by warm ambient chords.",
+      "audioUrl": "/audio/rain-ambient.mp3",
+      "coverUrl": "",
+      "duration": 180,
+      "playlistId": "cloudy-day",
+      "order": 1,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-2",
+      "title": "Day 5 Period Relief & Warm Pillow",
+      "artist": "Peaceful Rest Frequencies",
+      "description": "Soothing low-tempo piano notes designed to ease cramps and promote relaxed breathing.",
+      "audioUrl": "/audio/period-relief.mp3",
+      "coverUrl": "",
+      "duration": 210,
+      "playlistId": "period-care",
+      "order": 2,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-3",
+      "title": "Lavender Twilight & Chai",
+      "artist": "Peaceful Forest Lofi",
+      "description": "Soft lofi piano with quiet vinyl warmth and nostalgic evening calm.",
+      "audioUrl": "/audio/lavender-twilight.mp3",
+      "coverUrl": "",
+      "duration": 210,
+      "playlistId": "cloudy-day",
+      "order": 3,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-4",
+      "title": "Whispering Pines of the Forest",
+      "artist": "Diyuuuu Comfort Corner",
+      "description": "A deep emerald forest breeze with soothing harmonic overtones.",
+      "audioUrl": "/audio/forest-whispers.mp3",
+      "coverUrl": "",
+      "duration": 240,
+      "playlistId": "forest-lullaby",
+      "order": 4,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-5",
+      "title": "Chamomile Tea & Heated Blanket",
+      "artist": "Gentle Warmth Ensemble",
+      "description": "Delicate acoustic guitar plucks like a warm cup of herbal tea in cold weather.",
+      "audioUrl": "/audio/chamomile.mp3",
+      "coverUrl": "",
+      "duration": 195,
+      "playlistId": "period-care",
+      "order": 5,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-6",
+      "title": "Sleepy Starlight Lullaby",
+      "artist": "Midnight Celestial",
+      "description": "Soft bells and celestial pads for when you want to close your eyes and sleep peacefully.",
+      "audioUrl": "/audio/lullaby.mp3",
+      "coverUrl": "",
+      "duration": 250,
+      "playlistId": "period-care",
+      "order": 6,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-7",
+      "title": "Chai Tapri Memories",
+      "artist": "Acoustic Raindrops",
+      "description": "Warm electric piano chords reminiscent of evening chai under a tin shed in the rain.",
+      "audioUrl": "/audio/tapri.mp3",
+      "coverUrl": "",
+      "duration": 190,
+      "playlistId": "chai-study",
+      "order": 7,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-8",
+      "title": "Soft Autumn Rain",
+      "artist": "Misty Window Pane",
+      "description": "Continuous soothing rain sounds overlaid with mellow ambient pads.",
+      "audioUrl": "/audio/autumn-rain.mp3",
+      "coverUrl": "",
+      "duration": 300,
+      "playlistId": "cloudy-day",
+      "order": 8,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-9",
+      "title": "Reading by Desk Lamp",
+      "artist": "Lofi Haven",
+      "description": "Gentle rhythm and warm chords for peaceful, distraction-free reading.",
+      "audioUrl": "/audio/lamp-reading.mp3",
+      "coverUrl": "",
+      "duration": 220,
+      "playlistId": "chai-study",
+      "order": 9,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    },
+    {
+      "id": "track-10",
+      "title": "Sunrise Over Misty Hills",
+      "artist": "Hopeful Morning",
+      "description": "Gentle morning chords indicating that every cloudy day passes and sunlight returns.",
+      "audioUrl": "/audio/sunrise.mp3",
+      "coverUrl": "",
+      "duration": 215,
+      "playlistId": "forest-lullaby",
+      "order": 10,
+      "published": true,
+      "isSynthesizedBuiltIn": true
+    }
+  ],
+  "telegramConfig": {
+    "botToken": "8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k",
+    "chatId": "8551057626",
+    "notifyOnSharedResponse": true,
+    "notifyOnSessionStart": true,
+    "notifyOnVerification": true,
+    "notifyOnGamePlay": true,
+    "notifyOnMusicPlay": false,
+    "notifyOnDailySummary": true,
+    "dailySummaryTime": "21:00",
+    "lastTestedAt": null,
+    "lastError": "Bad Request: chat not found"
+  },
+  "emailConfig": {
+    "enabled": true,
+    "service": "gmail",
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "user": "nraj9811@gmail.com",
+    "pass": "",
+    "fromName": "DIYUUUU — Nishant Raj (Sir jiii) ☁️💜",
+    "fromEmail": "nraj9811@gmail.com",
+    "lastSentAt": null,
+    "lastStatus": "failed: missing credentials",
+    "lastError": "SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password)"
+  },
+  "activityLogs": [],
+  "sharedResponses": []
+}
