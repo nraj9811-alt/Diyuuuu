@@ -9,25 +9,36 @@
     "requireVerification": true,
     "activeOtps": [
       {
-        "phone": "8449385256",
-        "email": "nraj9811@gmail.com",
-        "otp": "401765",
-        "expiresAt": 1793181053148,
-        "attempts": 0,
-        "resendAfter": 1793180498148
-      },
-      {
         "phone": "9876543210",
         "email": "test@example.com",
         "otp": "303301",
         "expiresAt": 1793185883334,
         "attempts": 0,
         "resendAfter": 1793185328334
+      },
+      {
+        "phone": "8449385256",
+        "email": "nraj9811@gmail.com",
+        "otp": "626964",
+        "expiresAt": 1793206945730,
+        "attempts": 0,
+        "resendAfter": 1793206390730
       }
     ],
     "tempTokens": [],
     "verifiedSessions": [],
     "verificationLogs": [
+      {
+        "id": "vlog_1793206348214",
+        "mobileNumber": "8449385256",
+        "email": "nraj9811@gmail.com",
+        "timestamp": "28/10/2026, 10:22:25 pm",
+        "otpVerified": false,
+        "dobVerified": false,
+        "accessGranted": false,
+        "failedAttempts": 0,
+        "lastAttemptStatus": "OTP delivered to email via SMTP"
+      },
       {
         "id": "vlog_1793185283343",
         "mobileNumber": "9876543210",
@@ -1159,12 +1170,12 @@
     "port": 465,
     "secure": true,
     "user": "nraj9811@gmail.com",
-    "pass": "",
+    "pass": "jlnbtilnnjayxhgs",
     "fromName": "DIYUUUU — Nishant Raj (Sir jiii) ☁️💜",
     "fromEmail": "nraj9811@gmail.com",
-    "lastSentAt": null,
-    "lastStatus": "failed: missing credentials",
-    "lastError": "SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password)"
+    "lastSentAt": "28/10/2026, 10:22:25 pm",
+    "lastStatus": "Delivered to nraj9811@gmail.com (ID: <9c8f45ea-984d-e2bd-055f-e7c43c0c7772@gmail.com>)",
+    "lastError": null
   },
   "activityLogs": [],
   "sharedResponses": []

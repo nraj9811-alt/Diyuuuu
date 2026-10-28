@@ -159,7 +159,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
                 Welcome to your little world, Diyuuuu ☁️💜
               </h1>
               <p className="text-xs text-[#A7B7A0] leading-relaxed font-body">
-                Yeh website strictly aapke liye private hai. Apna mobile number aur email enter kijiye, hum email par secret verification code bhejenge.
+                Yeh website strictly aapke liye private hai. Aage badhne ke liye apna Mobile Number aur Email ID verify kijiye.
               </p>
             </div>
 
@@ -167,12 +167,12 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-[#B8A8D9] uppercase tracking-wider flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#E8B878]" />
-                  <span>Mobile Number:</span>
+                  <span>Your Mobile Number (Required):</span>
                 </label>
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. 9876543210 ya +91 9876543210"
+                  placeholder="Enter your 10-digit mobile number"
                   value={mobileNumber}
                   onChange={(e) => setMobileNumber(e.target.value)}
                   className="w-full rounded-xl bg-[#102A25] border border-[#B8A8D9]/30 px-3.5 py-2.5 text-sm text-[#FFFDF8] placeholder-[#A7B7A0]/45 focus:outline-none focus:ring-2 focus:ring-[#B8A8D9]"
@@ -182,12 +182,12 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-[#B8A8D9] uppercase tracking-wider flex items-center gap-1.5">
                   <Mail className="w-3.5 h-3.5 text-[#E8B878]" />
-                  <span>Email Address (OTP yahan aayega):</span>
+                  <span>Your Email Address (Required):</span>
                 </label>
                 <input
                   type="email"
                   required
-                  placeholder="e.g. divya@gmail.com"
+                  placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-xl bg-[#102A25] border border-[#B8A8D9]/30 px-3.5 py-2.5 text-sm text-[#FFFDF8] placeholder-[#A7B7A0]/45 focus:outline-none focus:ring-2 focus:ring-[#B8A8D9]"
@@ -196,7 +196,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
 
               <div className="p-2.5 rounded-xl bg-[#102A25]/70 border border-[#B8A8D9]/15 text-[11px] text-[#A7B7A0] flex items-center gap-2">
                 <Shield className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Privacy: Dono details sirf one-time authentication ke liye use hoti hain.</span>
+                <span>Security Check: Dono details verify hone par hi 6-digit OTP generate hoga.</span>
               </div>
             </div>
 
@@ -211,7 +211,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               disabled={isLoading || !mobileNumber.trim() || !email.trim()}
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B8A8D9] to-[#D8CEEE] text-[#102A25] font-bold text-sm hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all shadow-md flex items-center justify-center gap-2"
             >
-              <span>{isLoading ? 'OTP bhej rahe hain...' : 'Email par OTP Bhejo ✉️'}</span>
+              <span>{isLoading ? 'Verifying Details & Sending OTP...' : 'Verify & Send 6-Digit OTP 🔒'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>

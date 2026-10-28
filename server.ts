@@ -897,7 +897,7 @@ function getInitialDb() {
       port: 465,
       secure: true,
       user: process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
-      pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || '',
+      pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs',
       fromName: 'DIYUUUU — Nishant Raj (Sir jiii) ☁️💜',
       fromEmail: 'nraj9811@gmail.com',
       lastSentAt: null as string | null,
@@ -1036,6 +1036,130 @@ async function sendTelegramNotification(text: string, db?: any): Promise<{ succe
   }
 }
 
+// Active Session Inactivity Tracker & Master Report Builder
+const activeSessionStates = new Map<string, {
+  firstSeen: number;
+  lastSeen: number;
+  timer: NodeJS.Timeout | null;
+  lastReportSentAt: number;
+}>();
+
+async function sendMasterSessionReport(reason: string, clientSessionId?: string, dbInstance?: any): Promise<{ success: boolean; error?: string }> {
+  const db = dbInstance || readDb();
+  if (!db.telegramConfig?.botToken || !db.telegramConfig?.chatId) {
+    return { success: false, error: 'Telegram not configured' };
+  }
+
+  const now = Date.now();
+  const sid = clientSessionId || 'latest';
+  const sessionState = activeSessionStates.get(sid);
+
+  // Avoid duplicate reports within 15 seconds for the same session
+  if (sessionState && now - sessionState.lastReportSentAt < 15000 && reason !== 'Manual Admin Request') {
+    return { success: true };
+  }
+  if (sessionState) {
+    sessionState.lastReportSentAt = now;
+    if (sessionState.timer) {
+      clearTimeout(sessionState.timer);
+      sessionState.timer = null;
+    }
+  }
+
+  const nowTime = new Date().toLocaleString('en-IN', { timeZone: db.settings.timezone || 'Asia/Kolkata' });
+  const allLogs = db.activityLogs || [];
+  const sessionLogs = clientSessionId
+    ? allLogs.filter((l: any) => l.clientSessionId === clientSessionId)
+    : allLogs.slice(0, 25);
+
+  const logsToUse = sessionLogs.length > 0 ? sessionLogs : allLogs.slice(0, 20);
+
+  // Calculate duration
+  let durationStr = 'Active session';
+  if (sessionState) {
+    const diffSec = Math.max(1, Math.round((sessionState.lastSeen - sessionState.firstSeen) / 1000));
+    const mins = Math.floor(diffSec / 60);
+    const secs = diffSec % 60;
+    durationStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+  }
+
+  // Unique sections visited in chronological order
+  const chronological = [...logsToUse].reverse();
+  const sectionsVisited: string[] = [];
+  for (const log of chronological) {
+    if (log.section && !sectionsVisited.includes(log.section)) {
+      sectionsVisited.push(log.section);
+    }
+  }
+
+  const pathText = sectionsVisited.length > 0 ? sectionsVisited.join(' ➔ ') : 'Welcome Screen ➔ Cozy Room';
+
+  // Recent 12 actions formatted cleanly
+  const timelineLines = chronological.slice(-12).map((l: any) => {
+    const timePart = (l.timestamp || '').split(',')[1]?.trim() || l.timestamp || '';
+    return `• [${timePart}] <b>${l.section}</b>: ${l.details || l.eventType}`;
+  });
+
+  // Recent shared responses
+  const recentResponses = (db.sharedResponses || []).slice(0, 3).map((r: any) => {
+    return `• <b>${r.section}:</b> "${String(r.responseText).substring(0, 120)}"`;
+  });
+
+  // Latest cycle log
+  const latestCycle = db.cycleTracker?.logs?.[0];
+  const cycleSummary = latestCycle
+    ? `Day ${latestCycle.cycleDay} | Flow: ${latestCycle.flow} | Cramps: ${latestCycle.crampLevel}/10 | Mood: ${latestCycle.mood}`
+    : 'No new cycle log in this session';
+
+  const masterMsg =
+    `📋👑 <b>DIYUUUU — COMPLETE MASTER SESSION REPORT</b>\n` +
+    `━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+    `<b>Trigger Reason:</b> ${reason}\n` +
+    `<b>Report Time (IST):</b> ${nowTime}\n` +
+    `<b>Session Duration:</b> ${durationStr}\n` +
+    `<b>Total Actions Logged:</b> ${logsToUse.length}\n\n` +
+    `🗺️ <b>NAVIGATION PATH:</b>\n${pathText}\n\n` +
+    `💋 <b>AFFECTION STATS:</b>\n` +
+    `• Total Kisses: ${db.cuddleStats?.totalKisses || 143} (Last: ${db.cuddleStats?.lastKissIntensity || 'Sweet Kiss'})\n` +
+    `• Total Hugs: ${db.cuddleStats?.totalHugs || 84} (Last: ${db.cuddleStats?.lastHugType || 'Tight Hug'})\n\n` +
+    `🌸 <b>LATEST PERIOD & CYCLE STATUS:</b>\n` +
+    `• ${cycleSummary}\n\n` +
+    (recentResponses.length > 0
+      ? `💌 <b>DIVYA'S LATEST SHARED NOTES/ANSWERS:</b>\n${recentResponses.join('\n')}\n\n`
+      : '') +
+    `⏱️ <b>STEP-BY-STEP ACTIVITY TIMELINE:</b>\n` +
+    (timelineLines.length > 0 ? timelineLines.join('\n') : '• Visited Cozy Room') +
+    `\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+    `<i>Sir jiii, yeh Divya ke session ki poori master report hai! ☁️💜</i>`;
+
+  return sendTelegramNotification(masterMsg, db);
+}
+
+function touchSessionActivity(clientSessionId: string) {
+  if (!clientSessionId) return;
+  const now = Date.now();
+  let state = activeSessionStates.get(clientSessionId);
+  if (!state) {
+    state = {
+      firstSeen: now,
+      lastSeen: now,
+      timer: null,
+      lastReportSentAt: 0,
+    };
+    activeSessionStates.set(clientSessionId, state);
+  } else {
+    state.lastSeen = now;
+    if (state.timer) {
+      clearTimeout(state.timer);
+    }
+  }
+
+  // Schedule automatic Master Report after 90 seconds of inactivity
+  state.timer = setTimeout(() => {
+    sendMasterSessionReport('⏳ Inactivity Detected (Divya has been idle for 90s)', clientSessionId).catch(() => {});
+  }, 90 * 1000);
+}
+
 // Mask Phone Number for Admin view (e.g. +91 ******3210)
 function maskPhoneNumber(phone: string): string {
   const clean = phone.trim();
@@ -1049,8 +1173,9 @@ function maskPhoneNumber(phone: string): string {
 async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise<{ success: boolean; error?: string; messageId?: string }> {
   const currentDb = db || readDb();
   const emailCfg = currentDb.emailConfig || {};
-  const user = emailCfg.user || process.env.SMTP_USER || process.env.GMAIL_USER;
-  const pass = emailCfg.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+  const user = (emailCfg.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com').trim();
+  const rawPass = emailCfg.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs';
+  const pass = rawPass.replace(/\s+/g, '');
 
   if (!user || !pass) {
     const errorMsg = 'SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password)';
@@ -1949,6 +2074,10 @@ async function createApp() {
         db.activityLogs.unshift(logEntry);
         addedLogs.push(logEntry);
 
+        if (ev.eventType !== 'session_end' && ev.eventType !== 'inactivity_timeout' && ev.eventType !== 'tab_hidden') {
+          touchSessionActivity(logEntry.clientSessionId);
+        }
+
         if (db.telegramConfig.botToken && db.telegramConfig.chatId) {
           if (ev.eventType === 'session_start' && db.telegramConfig.notifyOnSessionStart) {
             const msg = `☁️💜 <b>DIYUUUU WEBSITE — VISITOR SESSION STARTED</b>\n` +
@@ -1956,6 +2085,12 @@ async function createApp() {
               `<b>Section:</b> ${ev.section || 'Welcome Screen'}\n` +
               `Diyuuuu is in her comfort world.`;
             sendTelegramNotification(msg, db).catch(() => {});
+          } else if (ev.eventType === 'session_end') {
+            sendMasterSessionReport('🚪 Site Closed / Browser Tab Exited', logEntry.clientSessionId, db).catch(() => {});
+          } else if (ev.eventType === 'tab_hidden') {
+            sendMasterSessionReport('📱 Screen Minimized / Switched Away from Tab', logEntry.clientSessionId, db).catch(() => {});
+          } else if (ev.eventType === 'inactivity_timeout') {
+            sendMasterSessionReport('⏳ Inactivity Detected (Idle on Website)', logEntry.clientSessionId, db).catch(() => {});
           } else if (ev.eventType === 'section_view' || ev.eventType === 'navigation') {
             const msg = `📍 <b>DIYUUUU OPENED: ${String(ev.section).toUpperCase()}</b>\n\n` +
               `<b>Details:</b> ${ev.details || 'Viewed section'}\n` +
@@ -1989,6 +2124,45 @@ async function createApp() {
       res.json({ success: true, count: addedLogs.length });
     } catch (err: any) {
       res.status(500).json({ error: 'Failed to record activity', details: err.message });
+    }
+  });
+
+  // Dedicated Beacon / Master Report Endpoint for Tab Close & Inactivity
+  app.post('/api/session/master-report', express.text({ type: '*/*' }), async (req, res) => {
+    try {
+      let payload: any = {};
+      if (typeof req.body === 'string' && req.body.trim().startsWith('{')) {
+        try {
+          payload = JSON.parse(req.body);
+        } catch {
+          payload = {};
+        }
+      } else if (typeof req.body === 'object' && req.body !== null) {
+        payload = req.body;
+      }
+
+      const reason = payload.reason || '🚪 Site Closed / Session Ended';
+      const clientSessionId = payload.clientSessionId || undefined;
+      const db = readDb();
+
+      if (clientSessionId) {
+        const nowTime = new Date().toLocaleString('en-IN', { timeZone: db.settings.timezone || 'Asia/Kolkata' });
+        db.activityLogs.unshift({
+          id: 'log-' + Date.now() + '-' + Math.round(Math.random() * 1000),
+          eventType: 'session_end',
+          section: payload.lastSection || 'Website Exit',
+          details: reason,
+          timestamp: nowTime,
+          clientSessionId: String(clientSessionId).substring(0, 50),
+          isEstimated: true,
+        });
+        saveDb(db);
+      }
+
+      const result = await sendMasterSessionReport(reason, clientSessionId, db);
+      res.json({ success: result.success, error: result.error });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
     }
   });
 
@@ -2522,7 +2696,7 @@ async function createApp() {
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { middlewareMode: true, hmr: false, watch: null },
       appType: 'spa',
     });
     app.use(vite.middlewares);

@@ -57,7 +57,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('diyu_theme', theme);
   }, [theme]);
 
-  // Log session start on mount
+  // Log session start, inactivity, and exit master report
   useEffect(() => {
     const startNotice = sessionStorage.getItem('diyu_session_logged');
     if (!startNotice) {
@@ -72,20 +72,72 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       ]);
     }
 
-    const handleBeforeUnload = () => {
-      logActivityEvents([
-        {
-          eventType: 'session_end',
-          section: 'Website Exit',
-          details: 'Session concluded or tab closed',
-          clientSessionId: sessionId,
-          isEstimated: true,
-        },
-      ]);
+    const dispatchBeaconMasterReport = (reason: string) => {
+      const payload = JSON.stringify({
+        reason,
+        clientSessionId: sessionId,
+      });
+      try {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/session/master-report', payload);
+        } else {
+          fetch('/api/session/master-report', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true,
+          }).catch(() => {});
+        }
+      } catch {
+        // ignore
+      }
     };
 
+    const handleBeforeUnload = () => {
+      dispatchBeaconMasterReport('🚪 Site Closed / Browser Tab Exited');
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        dispatchBeaconMasterReport('📱 Screen Minimized / Switched Away from Website');
+      }
+    };
+
+    // 90-second client inactivity detector
+    let inactivityTimer: ReturnType<typeof setTimeout> | null = null;
+    let inactivityReported = false;
+
+    const resetInactivityTimer = () => {
+      inactivityReported = false;
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        if (!inactivityReported) {
+          inactivityReported = true;
+          dispatchBeaconMasterReport('⏳ Inactivity Detected (Idle for 90 seconds)');
+        }
+      }, 90 * 1000);
+    };
+
+    resetInactivityTimer();
+
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('pagehide', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('click', resetInactivityTimer, { passive: true });
+    window.addEventListener('touchstart', resetInactivityTimer, { passive: true });
+    window.addEventListener('scroll', resetInactivityTimer, { passive: true });
+    window.addEventListener('keydown', resetInactivityTimer, { passive: true });
+
+    return () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('click', resetInactivityTimer);
+      window.removeEventListener('touchstart', resetInactivityTimer);
+      window.removeEventListener('scroll', resetInactivityTimer);
+      window.removeEventListener('keydown', resetInactivityTimer);
+    };
   }, [sessionId, theme]);
 
   const setTheme = (t: ThemeMode) => {
