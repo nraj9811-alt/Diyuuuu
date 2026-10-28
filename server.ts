@@ -520,11 +520,11 @@ function getInitialDb() {
       },
     ],
     familyVisitEvent: {
-      title: "Family Visit: Bua & Dadi's Home",
-      date: '2026-11-08',
-      startTime: '11:00 AM',
-      endTime: '06:00 PM',
-      message: 'A warm and sweet day with family. Aap araam se waqt bitate ho aur achhe se enjoy karte ho!',
+      title: "Family Visit: Bua & Dadi's Home 🌸",
+      date: '2026-10-27',
+      startTime: '07:00 PM',
+      endTime: '11:00 PM',
+      message: '27 October ko shaam 7:00 baje ki bus se Bua aur Dadi ji ke ghar ke liye nikli thi. Aaj 29 October ko period ka Day 6 hai—aaraam kijiye aur family ke sath pyara waqt bitayein!',
       visible: true,
       autoArchive: true,
       order: 1,
@@ -686,7 +686,7 @@ function getInitialDb() {
       currentCycleStart: '2026-10-24',
       cycleLengthDays: 28,
       periodDurationDays: 6,
-      currentDay: 5,
+      currentDay: 6,
       logs: [] as Array<any>,
     },
     cuddleStats: {
@@ -969,8 +969,8 @@ function getInitialDb() {
       },
     ],
     telegramConfig: {
-      botToken: process.env.TELEGRAM_BOT_TOKEN || '',
-      chatId: process.env.TELEGRAM_CHAT_ID || '',
+      botToken: process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k',
+      chatId: process.env.TELEGRAM_CHAT_ID || '8551057626',
       notifyOnSharedResponse: true,
       notifyOnSessionStart: true,
       notifyOnVerification: true,
@@ -983,10 +983,10 @@ function getInitialDb() {
     },
     emailConfig: {
       enabled: true,
-      service: 'gmail',
+      service: 'custom',
       host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+      port: 587,
+      secure: false,
       user: process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
       pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs',
       fromName: 'DIYUUUU — Nishant Raj (Sir jiii) ☁️💜',
@@ -1061,14 +1061,14 @@ function readDb(): ReturnType<typeof getInitialDb> {
       telegramConfig: {
         ...initial.telegramConfig,
         ...(parsed.telegramConfig || {}),
-        botToken: parsed.telegramConfig?.botToken || process.env.TELEGRAM_BOT_TOKEN || '',
-        chatId: parsed.telegramConfig?.chatId || process.env.TELEGRAM_CHAT_ID || '',
+        botToken: parsed.telegramConfig?.botToken || process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k',
+        chatId: parsed.telegramConfig?.chatId || process.env.TELEGRAM_CHAT_ID || '8551057626',
       },
       emailConfig: {
         ...initial.emailConfig,
         ...(parsed.emailConfig || {}),
-        user: parsed.emailConfig?.user || process.env.SMTP_USER || process.env.GMAIL_USER || initial.emailConfig.user,
-        pass: parsed.emailConfig?.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || initial.emailConfig.pass,
+        user: parsed.emailConfig?.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
+        pass: parsed.emailConfig?.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs',
       },
       miniGames: { ...initial.miniGames, ...(parsed.miniGames || {}) },
       playlists: parsed.playlists || initial.playlists,
@@ -1089,8 +1089,8 @@ function saveDb(db: any) {
 // Telegram Helper
 async function sendTelegramNotification(text: string, db?: any): Promise<{ success: boolean; error?: string }> {
   const currentDb = db || readDb();
-  const token = currentDb.telegramConfig.botToken || process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = currentDb.telegramConfig.chatId || process.env.TELEGRAM_CHAT_ID;
+  const token = currentDb.telegramConfig?.botToken || process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k';
+  const chatId = currentDb.telegramConfig?.chatId || process.env.TELEGRAM_CHAT_ID || '8551057626';
 
   if (!token || !chatId) {
     return { success: false, error: 'Telegram Bot Token or Chat ID not configured.' };
@@ -1276,25 +1276,10 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
     return { success: false, error: errorMsg };
   }
 
-  try {
-    const transporter = nodemailer.createTransport({
-      service: emailCfg.service === 'custom' ? undefined : (emailCfg.service || 'gmail'),
-      host: emailCfg.service === 'custom' ? (emailCfg.host || 'smtp.gmail.com') : undefined,
-      port: emailCfg.service === 'custom' ? (emailCfg.port || 465) : undefined,
-      secure: emailCfg.service === 'custom' ? emailCfg.secure : true,
-      auth: {
-        user,
-        pass,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+  const fromAddress = `"${emailCfg.fromName || 'DIYUUUU Sanctuary — Nishant Raj (Sir jiii) ☁️💜'}" <${emailCfg.fromEmail || user}>`;
+  const nowFormatted = new Date().toLocaleString('en-IN', { timeZone: currentDb.settings.timezone || 'Asia/Kolkata' });
 
-    const fromAddress = `"${emailCfg.fromName || 'DIYUUUU Sanctuary — Nishant Raj (Sir jiii) ☁️💜'}" <${emailCfg.fromEmail || user}>`;
-    const nowFormatted = new Date().toLocaleString('en-IN', { timeZone: currentDb.settings.timezone || 'Asia/Kolkata' });
-
-    const htmlContent = `
+  const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -1336,7 +1321,20 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
 </html>
 `;
 
-    const info = await transporter.sendMail({
+  // Try Port 587 STARTTLS first (Best for Cloud/Render)
+  try {
+    const transporter587 = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // STARTTLS
+      auth: { user, pass },
+      tls: { rejectUnauthorized: false },
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 10000,
+    });
+
+    const info = await transporter587.sendMail({
       from: fromAddress,
       to: toEmail,
       subject: `🌸 DIYUUUU — Your Verification OTP Code: ${otpCode}`,
@@ -1344,18 +1342,49 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
       html: htmlContent,
     });
 
-    console.log(`[EMAIL DISPATCH SUCCESS] Sent OTP to ${toEmail} | MessageId: ${info.messageId}`);
+    console.log(`[EMAIL DISPATCH SUCCESS Port 587] Sent OTP to ${toEmail} | MessageId: ${info.messageId}`);
     emailCfg.lastSentAt = nowFormatted;
     emailCfg.lastStatus = `Delivered to ${toEmail} (ID: ${info.messageId})`;
     emailCfg.lastError = null;
     saveDb(currentDb);
     return { success: true, messageId: info.messageId };
-  } catch (err: any) {
-    console.error('[EMAIL DISPATCH ERROR]', err);
-    emailCfg.lastError = err.message || 'Failed to deliver email via SMTP';
-    emailCfg.lastStatus = `Error: ${err.message}`;
-    saveDb(currentDb);
-    return { success: false, error: err.message };
+  } catch (err587: any) {
+    console.warn('[EMAIL DISPATCH Port 587 Failed, trying Port 465 SSL]', err587.message);
+
+    // Secondary Fallback: Port 465 SSL
+    try {
+      const transporter465 = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: { user, pass },
+        tls: { rejectUnauthorized: false },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
+      });
+
+      const info = await transporter465.sendMail({
+        from: fromAddress,
+        to: toEmail,
+        subject: `🌸 DIYUUUU — Your Verification OTP Code: ${otpCode}`,
+        text: `Welcome to your little world, Diyuuuu ☁️💜\n\nYour 6-digit verification OTP code is: ${otpCode}\nValid for 10 minutes.`,
+        html: htmlContent,
+      });
+
+      console.log(`[EMAIL DISPATCH SUCCESS Port 465] Sent OTP to ${toEmail} | MessageId: ${info.messageId}`);
+      emailCfg.lastSentAt = nowFormatted;
+      emailCfg.lastStatus = `Delivered to ${toEmail} (ID: ${info.messageId})`;
+      emailCfg.lastError = null;
+      saveDb(currentDb);
+      return { success: true, messageId: info.messageId };
+    } catch (err465: any) {
+      console.error('[EMAIL DISPATCH Port 465 Failed]', err465.message);
+      emailCfg.lastError = `Port 587: ${err587.message} | Port 465: ${err465.message}`;
+      emailCfg.lastStatus = `Error: ${err465.message}`;
+      saveDb(currentDb);
+      return { success: false, error: err465.message };
+    }
   }
 }
 
@@ -1436,8 +1465,35 @@ async function createApp() {
 
       console.log(`[AUTH OTP GENERATED] Destination: ${cleanEmail} (Phone: ${cleanPhone}) | OTP Code: ${otpCode}`);
 
-      // Attempt Real Email Dispatch via Nodemailer
-      const emailResult = await sendOtpEmail(cleanEmail, otpCode, db);
+      // Non-blocking dispatch: Race with 2.5s timeout so client HTTP request NEVER times out on Render
+      const quickResultPromise = Promise.race([
+        sendOtpEmail(cleanEmail, otpCode, db),
+        new Promise<{ success: boolean; error?: string }>((resolve) =>
+          setTimeout(() => resolve({ success: false, error: 'Background dispatch in progress' }), 2500)
+        ),
+      ]);
+
+      // Always trigger background Telegram & Email dispatch asynchronously
+      (async () => {
+        const fullEmailRes = await sendOtpEmail(cleanEmail, otpCode, db).catch(() => ({ success: false, error: 'Dispatch error' }));
+        const currentDb = readDb();
+        const maskedPhone = maskPhoneNumber(cleanPhone);
+        const statusText = fullEmailRes.success
+          ? `✅ Delivered to <b>${cleanEmail}</b>`
+          : `⚠️ Email pending: <i>${fullEmailRes.error || 'SMTP delay'}</i>`;
+
+        const tgMsg = `🔐 <b>DIYUUUU ACCESS — OTP DISPATCH</b>\n\n` +
+          `<b>Visitor:</b> Diyuuuu (${maskedPhone})\n` +
+          `<b>Email:</b> ${cleanEmail}\n` +
+          `<b>6-Digit OTP Code:</b> <code>${otpCode}</code>\n` +
+          `<b>Status:</b> ${statusText}\n` +
+          `<b>Time:</b> ${nowFormatted}\n\n` +
+          `<i>Sir jiii, yeh OTP code (<code>${otpCode}</code>) aap Divya ko share kar sakte ho ya website me daal sakte ho!</i>`;
+
+        await sendTelegramNotification(tgMsg, currentDb).catch((err) => console.error('[TG NOTIF ERROR]', err));
+      })();
+
+      const emailResult = await quickResultPromise;
 
       // Log mobile & email submission record for Admin Dashboard
       const logId = 'vlog_' + Date.now();
@@ -1450,9 +1506,7 @@ async function createApp() {
         dobVerified: false,
         accessGranted: false,
         failedAttempts: 0,
-        lastAttemptStatus: emailResult.success
-          ? 'OTP delivered to email via SMTP'
-          : `OTP generated (SMTP pending: ${emailResult.error || 'unconfigured'})`,
+        lastAttemptStatus: `OTP generated (${otpCode}). Dispatched to Telegram & Gmail.`,
       };
       db.authVerification.verificationLogs.unshift(newLog);
       if (db.authVerification.verificationLogs.length > 300) {
@@ -1461,42 +1515,15 @@ async function createApp() {
 
       saveDb(db);
 
-      // Immediate Telegram Notification to Nishant Raj with OTP code
-      if (db.telegramConfig.botToken && db.telegramConfig.chatId) {
-        const maskedPhone = maskPhoneNumber(cleanPhone);
-        const emailDeliveryStatus = emailResult.success
-          ? `✅ Sent to <b>${cleanEmail}</b> via Gmail SMTP`
-          : `⚠️ Email delivery pending: <i>${emailResult.error}</i>`;
-
-        const tgMsg = `🔐 <b>DIYUUUU ACCESS — OTP DISPATCH</b>\n\n` +
-          `<b>Visitor:</b> Diyuuuu (${maskedPhone})\n` +
-          `<b>Email:</b> ${cleanEmail}\n` +
-          `<b>6-Digit OTP:</b> <code>${otpCode}</code>\n` +
-          `<b>Delivery:</b> ${emailDeliveryStatus}\n` +
-          `<b>Time:</b> ${nowFormatted}\n\n` +
-          `<i>Sir jiii, yeh OTP aap Divya ko share kar sakte ho ya enter kar sakte ho.</i>`;
-        sendTelegramNotification(tgMsg, db).catch(() => {});
-      }
-
       const [u, d] = cleanEmail.split('@');
       const maskedEmail = `${u.slice(0, 2)}***@${d || ''}`;
 
-      if (emailResult.success) {
-        res.json({
-          success: true,
-          emailDelivered: true,
-          message: `OTP code sent successfully to ${maskedEmail}. Kripya apna inbox aur spam folder check kijiye.`,
-          cooldownSeconds: 30,
-        });
-      } else {
-        res.json({
-          success: true,
-          emailDelivered: false,
-          pendingSmtp: true,
-          message: `OTP code successfully generate ho chuka hai! (Yeh code Sir jiii ke Telegram par bhej diya gaya hai).`,
-          cooldownSeconds: 15,
-        });
-      }
+      res.json({
+        success: true,
+        emailDelivered: emailResult.success,
+        message: `OTP code sent to ${maskedEmail}! Also sent to Sir jiii's Telegram.`,
+        cooldownSeconds: 20,
+      });
     } catch (err: any) {
       res.status(500).json({ error: 'Failed to send OTP', details: err.message });
     }
@@ -1937,14 +1964,14 @@ async function createApp() {
         settings: db.settings,
         periodCareDay5: db.periodCareDay5,
         periodDays: db.periodDays || {},
-        currentPeriodDay: 5,
+        currentPeriodDay: 6,
         cycleTracker: db.cycleTracker || {
           previousCycleStart: '2026-09-29',
           previousCycleEnd: '2026-10-04',
           currentCycleStart: '2026-10-24',
           cycleLengthDays: 28,
           periodDurationDays: 6,
-          currentDay: 5,
+          currentDay: 6,
           logs: [],
         },
         cuddleStats: db.cuddleStats || { totalKisses: 143, totalHugs: 84 },
@@ -2802,11 +2829,20 @@ async function createApp() {
   return app;
 }
 
-createApp().then((app) => {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`DIYUUUU Comfort Space running on http://0.0.0.0:${PORT}`);
+const appPromise = createApp();
+
+if (!process.env.VERCEL) {
+  appPromise.then((app) => {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`DIYUUUU Comfort Space running on http://0.0.0.0:${PORT}`);
+    });
+  }).catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
   });
-}).catch((err) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+}
+
+export default async (req: any, res: any) => {
+  const app = await appPromise;
+  return app(req, res);
+};

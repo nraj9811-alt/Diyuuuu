@@ -292,7 +292,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               </div>
             )}
 
-            {infoMsg && !emailDelivered && (
+            {infoMsg && (
               <div className="p-3 rounded-xl bg-[#102A25] border border-[#B8A8D9]/30 text-xs text-[#B8A8D9] text-center">
                 {infoMsg}
               </div>
@@ -331,7 +331,7 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            {/* Help & Alternate Options */}
+            {/* Help & Resend Options */}
             <div className="pt-2 border-t border-[#B8A8D9]/15 space-y-2">
               <div className="flex items-center justify-between text-xs text-[#A7B7A0]">
                 <button
@@ -361,8 +361,8 @@ export const TwoStepVerification: React.FC<TwoStepVerificationProps> = ({ onVeri
               </div>
 
               <div className="p-3 rounded-xl bg-[#102A25]/60 border border-[#B8A8D9]/15 text-[11px] text-[#A7B7A0] leading-relaxed">
-                <span className="text-[#FFFDF8] font-semibold block mb-0.5">ℹ️ OTP Delivery Note:</span>
-                OTP aapke email aur Nishant Raj (Sir jiii) ke Telegram bot par securely dispatch kiya gaya hai. Agar email aane mein thodi der lage ya Spam folder mein ho, toh aap Sir jiii se bhi code le sakte ho.
+                <span className="text-[#FFFDF8] font-semibold block mb-0.5">ℹ️ Email OTP Note:</span>
+                OTP code aapke email inbox par bhej diya gaya hai. Kripya apna Spam/Junk folder bhi check kar lijiye.
               </div>
             </div>
           </form>
