@@ -969,7 +969,7 @@ function getInitialDb() {
       },
     ],
     telegramConfig: {
-      botToken: process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k',
+      botToken: process.env.TELEGRAM_BOT_TOKEN || '',
       chatId: process.env.TELEGRAM_CHAT_ID || '8551057626',
       notifyOnSharedResponse: true,
       notifyOnSessionStart: true,
@@ -988,7 +988,7 @@ function getInitialDb() {
       port: 587,
       secure: false,
       user: process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
-      pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs',
+      pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || '',
       fromName: 'DIYUUUU — Nishant Raj (Sir jiii) ☁️💜',
       fromEmail: 'nraj9811@gmail.com',
       lastSentAt: null as string | null,
@@ -1061,14 +1061,14 @@ function readDb(): ReturnType<typeof getInitialDb> {
       telegramConfig: {
         ...initial.telegramConfig,
         ...(parsed.telegramConfig || {}),
-        botToken: parsed.telegramConfig?.botToken || process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k',
+        botToken: process.env.TELEGRAM_BOT_TOKEN || parsed.telegramConfig?.botToken || '',
         chatId: parsed.telegramConfig?.chatId || process.env.TELEGRAM_CHAT_ID || '8551057626',
       },
       emailConfig: {
         ...initial.emailConfig,
         ...(parsed.emailConfig || {}),
         user: parsed.emailConfig?.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
-        pass: parsed.emailConfig?.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs',
+        pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || parsed.emailConfig?.pass || '',
       },
       miniGames: { ...initial.miniGames, ...(parsed.miniGames || {}) },
       playlists: parsed.playlists || initial.playlists,
@@ -1089,7 +1089,7 @@ function saveDb(db: any) {
 // Telegram Helper
 async function sendTelegramNotification(text: string, db?: any): Promise<{ success: boolean; error?: string }> {
   const currentDb = db || readDb();
-  const token = currentDb.telegramConfig?.botToken || process.env.TELEGRAM_BOT_TOKEN || '8900553844:AAGouERU_EQUD06O-Qq3mAHMDIPYOX6FP0k';
+  const token = process.env.TELEGRAM_BOT_TOKEN || currentDb.telegramConfig?.botToken || '';
   const chatId = currentDb.telegramConfig?.chatId || process.env.TELEGRAM_CHAT_ID || '8551057626';
 
   if (!token || !chatId) {
@@ -1265,7 +1265,7 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
   const currentDb = db || readDb();
   const emailCfg = currentDb.emailConfig || {};
   const user = (emailCfg.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com').trim();
-  const rawPass = emailCfg.pass || process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || 'jlnbtilnnjayxhgs';
+  const rawPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || emailCfg.pass || '';
   const pass = rawPass.replace(/\s+/g, '');
 
   if (!user || !pass) {
