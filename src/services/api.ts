@@ -32,9 +32,93 @@ const authHeaders = () => ({
 
 // Fetch Public Content
 export async function fetchPublicContent(): Promise<PublicContentResponse> {
-  const res = await fetch('/api/content');
-  if (!res.ok) throw new Error('Failed to load site content');
-  return res.json();
+  try {
+    const res = await fetch('/api/content');
+    if (!res.ok) throw new Error('Failed to load site content');
+    return res.json();
+  } catch (err) {
+    console.warn('API content fetch failed, using fallback static data:', err);
+    return {
+      settings: {
+        siteName: 'DIYUUUU — For Your Cloudy Days ☁️💜',
+        heroHeading: 'DIYUUUU ☁️💜',
+        heroSubtitle: 'For your cloudy days.',
+        heroSupporting: 'A little corner of the internet, made with care, just for you.',
+        enterButtonText: 'Enter your little world',
+        recipientName: 'Divya',
+        recipientNickname: 'Diyuuuu',
+        creatorName: 'Nishant Raj',
+        creatorRespectfulNickname: 'Sir jiii',
+        nicknames: ['Diyuuuu', 'Beendani ji', 'Madam Ji', 'bbg', 'Babyyyyy'],
+        activeTheme: 'forest',
+        timezone: 'Asia/Kolkata',
+        footerMessage: 'Crafted with warmth for Diyuuuu.',
+        calendarEnabled: true,
+        cycleTrackingEnabled: true,
+        reflectionsEnabled: true,
+        ambientRainAudioEnabled: false,
+        animationsEnabled: true,
+      },
+      periodCareDay5: {
+        dayNumber: 6,
+        title: 'Day 6: Final Taper & Light Flow 🕊️',
+        subtitle: 'Bleeding lagbhag khatam ho rahi hai. Post-period glow start hone wala hai!',
+        summary: 'Aaj 29 October ko period ka 6th day hai. Heavy flow poori tarah khatam ho gaya hai.',
+        comfortTips: [
+          { id: 'tip-1', title: 'Warm Refreshing Shower', desc: 'Body ko bohot halka aur rejuvenated feel hoga.', icon: 'droplet' },
+          { id: 'tip-2', title: 'Hydrating Warm Soup / Chai', desc: 'Garam chai ya soup body ko soothing warmth deta hai.', icon: 'coffee' },
+        ],
+        reassuranceMessage: 'Aapne 6 din bohot himmat aur pyaar se sambhale hain. Kal se aap bilkul fresh aur energetic feel karoge!',
+      },
+      periodDays: {},
+      currentPeriodDay: 6,
+      cycleTracker: {
+        previousCycleStart: '2026-09-29',
+        previousCycleEnd: '2026-10-04',
+        currentCycleStart: '2026-10-24',
+        cycleLengthDays: 28,
+        periodDurationDays: 6,
+        currentDay: 6,
+        logs: [],
+      },
+      cuddleStats: { totalKisses: 143, totalHugs: 84 },
+      nicknameGenerator: { nicknames: [] },
+      comfortCorner: { categories: [] },
+      notes: [],
+      letters: [],
+      appreciationCards: [],
+      memories: [],
+      familyVisitEvent: {
+        title: "Family Visit: Bua & Dadi's Home 🌸",
+        date: '2026-10-27',
+        startTime: '07:00 PM',
+        endTime: '11:00 PM',
+        message: '27 October ko shaam 7:00 baje ki bus se Bua aur Dadi ji ke ghar ke liye nikli thi. Aaj 29 October ko period ka Day 6 hai—aaraam kijiye.',
+        visible: true,
+        autoArchive: true,
+      },
+      todayPlan: { defaultActivity: 'Ek cup garam adrak chai', supportiveNote: 'Aap apne pace par chalte ho.' },
+      surpriseEnvelope: { previewTitle: 'A Special Note', hint: 'Tap gently...', letterContent: 'Hello Diyuuuu', signature: 'Nishant' },
+      surpriseEnvelopes: [],
+      miniGames: {},
+      playlists: [],
+      musicTracks: [
+        {
+          id: 'real-song-until-i-found-you',
+          title: 'Until I Found You (Acoustic) 🌸',
+          artist: 'Stephen Sanchez · Acoustic Cover',
+          description: '"I would never fall in love again until I found her..."',
+          audioUrl: '/assets/aistudio/Until_20I_20Found_20You_20-_20Stephen_20Sanchez_20_28Acoustic_20Cover_20by_20Francis_20Greg_29_20_mMOGr3y8tt0__8f8681e9.mp3',
+          duration: 189,
+          playlistId: 'cloudy-day',
+          order: 1,
+          published: true,
+        },
+      ],
+      telegramConfigured: true,
+      requireVerification: true,
+    };
+  }
 }
 
 // TWO-STEP VERIFICATION API

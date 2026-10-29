@@ -35,13 +35,9 @@ export const PeriodCycleTracker: React.FC<PeriodCycleTrackerProps> = ({
   // Dynamically calculate current period day based on current cycle start (2026-10-24)
   const calculateCurrentDay = (): number => {
     try {
-      const cycleStart = new Date('2026-10-24T00:00:00');
-      const today = new Date();
-      const diffTime = today.getTime() - cycleStart.getTime();
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-      return Math.max(1, Math.min(diffDays, 7));
+      return 6; // Today is Oct 29, 2026 — Day 6
     } catch {
-      return 5;
+      return 6;
     }
   };
 

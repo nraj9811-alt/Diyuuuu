@@ -128,37 +128,37 @@ function getInitialDb() {
       animationsEnabled: true,
     },
     periodCareDay5: {
-      dayNumber: 5,
-      title: 'Day 5: Gentle Recovery & Care 🌸🩸',
-      subtitle: 'Aapne 5 din bohot himmat se sambhale hain, ab bas aaram karne ka waqt hai.',
-      summary: 'Day 5 period ka transition day hota hai—heavy flow kam ho raha hota hai, par sharir thaka rehta hai aur thodi backache ho sakti hai. Aap bilkul rest kijiye.',
+      dayNumber: 6,
+      title: 'Day 6: Final Taper & Light Flow 🕊️',
+      subtitle: 'Bleeding lagbhag khatam ho rahi hai. Post-period glow start hone wala hai!',
+      summary: 'Aaj 29 October ko period ka 6th day hai. Heavy flow poori tarah khatam ho gaya hai aur sharir recover kar raha hai. Aap aaram se rest kijiye aur family ke sath pyara waqt bitayein.',
       comfortTips: [
         {
           id: 'tip-1',
-          title: 'Garam Paani & Heat Pad',
-          desc: 'Lower abdomen aur back par thoda gentle heat dijiye, muscles relax ho jaate hain.',
-          icon: 'flame',
+          title: 'Warm Refreshing Shower',
+          desc: 'Body ko bohot halka aur rejuvenated feel hoga.',
+          icon: 'droplet',
         },
         {
           id: 'tip-2',
-          title: 'Adrak & Elaichi Wali Chai',
-          desc: 'Garam chai body ko soothing warmth deti hai aur bloating kam karti hai.',
+          title: 'Hydrating Warm Soup / Chai',
+          desc: 'Garam chai ya soup body ko soothing warmth deta hai.',
           icon: 'coffee',
         },
         {
           id: 'tip-3',
-          title: 'Soft Blanket & Pillow Support',
-          desc: 'Tangein mod kar pillow ke support se letiye, back par relief milega.',
+          title: 'Soft Blanket & Relaxing Rest',
+          desc: 'Bina kisi fikar ke aaram se blanket mein rest kijiye.',
           icon: 'bed',
         },
         {
           id: 'tip-4',
-          title: 'Dark Chocolate & Sweet Treat',
-          desc: 'Thoda sa dark chocolate mood aur serotonin boost karta hai. No guilt!',
+          title: 'Sweet Treat & Family Time',
+          desc: 'Bua aur Dadi ji ke sath pyaara waqt bitayein aur meetha enjoy kijiye.',
           icon: 'cookie',
         },
       ],
-      reassuranceMessage: 'Aap bohot strong ho aur aapne itne pain ko muskuraate hue jhela hai. Aaj aapka Sir jiii aapko special hug aur rest prescribe karta hai!',
+      reassuranceMessage: 'Aapne 6 din bohot himmat aur pyaar se sambhale hain. Kal se aap bilkul fresh aur energetic feel karoge! You made it through, bbg!',
     },
     nicknameGenerator: {
       nicknames: [
@@ -1320,6 +1320,39 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
 </body>
 </html>
 `;
+
+  // Try Resend HTTP API first if available (100% reliable on Render / cloud via HTTPS Port 443)
+  const resendApiKey = process.env.RESEND_API_KEY || emailCfg.resendApiKey;
+  if (resendApiKey) {
+    try {
+      const resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'DIYUUUU Sanctuary <onboarding@resend.dev>',
+          to: [toEmail],
+          subject: `🌸 DIYUUUU — Your Verification OTP Code: ${otpCode}`,
+          html: htmlContent,
+        }),
+      });
+      const resendData = await resendRes.json();
+      if (resendRes.ok && resendData?.id) {
+        console.log(`[RESEND API SUCCESS] Sent OTP to ${toEmail} | ID: ${resendData.id}`);
+        emailCfg.lastSentAt = nowFormatted;
+        emailCfg.lastStatus = `Delivered via Resend API (ID: ${resendData.id})`;
+        emailCfg.lastError = null;
+        saveDb(currentDb);
+        return { success: true, messageId: resendData.id };
+      } else {
+        console.warn('[RESEND API response warning]', resendData);
+      }
+    } catch (resendErr: any) {
+      console.warn('[RESEND API Warning, falling back to SMTP]', resendErr.message);
+    }
+  }
 
   // Try Port 587 STARTTLS first (Best for Cloud/Render)
   try {
