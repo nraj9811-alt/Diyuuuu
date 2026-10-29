@@ -1260,21 +1260,13 @@ function maskPhoneNumber(phone: string): string {
   return `${visibleStart} ******${visibleEnd}`;
 }
 
-// Real Email OTP Sender via Nodemailer
+// Real Email OTP Sender via Resend HTTP API (Primary) & Nodemailer SMTP (Fallback)
 async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise<{ success: boolean; error?: string; messageId?: string }> {
   const currentDb = db || readDb();
   const emailCfg = currentDb.emailConfig || {};
   const user = (emailCfg.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com').trim();
   const rawPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || emailCfg.pass || '';
   const pass = rawPass.replace(/\s+/g, '');
-
-  if (!user || !pass) {
-    const errorMsg = 'SMTP credentials not configured (Requires Gmail user and 16-digit Google App Password)';
-    emailCfg.lastError = errorMsg;
-    emailCfg.lastStatus = 'failed: missing credentials';
-    saveDb(currentDb);
-    return { success: false, error: errorMsg };
-  }
 
   const fromAddress = `"${emailCfg.fromName || 'DIYUUUU Sanctuary — Nishant Raj (Sir jiii) ☁️💜'}" <${emailCfg.fromEmail || user}>`;
   const nowFormatted = new Date().toLocaleString('en-IN', { timeZone: currentDb.settings.timezone || 'Asia/Kolkata' });
@@ -1321,10 +1313,12 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
 </html>
 `;
 
-  // Try Resend HTTP API first if available (100% reliable on Render / cloud via HTTPS Port 443)
-  const resendApiKey = process.env.RESEND_API_KEY || emailCfg.resendApiKey;
+  // 1. Try Resend HTTP API FIRST (Works over HTTPS Port 443 even when Render blocks SMTP ports 465/587)
+  const resendApiKey = (process.env.RESEND_API_KEY || emailCfg.resendApiKey || '').trim();
+  let resendErrorDetail = '';
   if (resendApiKey) {
     try {
+      const resendFrom = process.env.RESEND_FROM_EMAIL || 'DIYUUUU Sanctuary <onboarding@resend.dev>';
       const resendRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -1332,29 +1326,63 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
           'Authorization': `Bearer ${resendApiKey}`,
         },
         body: JSON.stringify({
-          from: 'DIYUUUU Sanctuary <onboarding@resend.dev>',
+          from: resendFrom,
           to: [toEmail],
           subject: `🌸 DIYUUUU — Your Verification OTP Code: ${otpCode}`,
           html: htmlContent,
         }),
       });
-      const resendData = await resendRes.json();
+      const resendData: any = await resendRes.json().catch(() => ({}));
       if (resendRes.ok && resendData?.id) {
         console.log(`[RESEND API SUCCESS] Sent OTP to ${toEmail} | ID: ${resendData.id}`);
         emailCfg.lastSentAt = nowFormatted;
-        emailCfg.lastStatus = `Delivered via Resend API (ID: ${resendData.id})`;
+        emailCfg.lastStatus = `Delivered via Resend API to ${toEmail} (ID: ${resendData.id})`;
         emailCfg.lastError = null;
         saveDb(currentDb);
         return { success: true, messageId: resendData.id };
       } else {
-        console.warn('[RESEND API response warning]', resendData);
+        resendErrorDetail = resendData?.message || resendData?.error || `HTTP ${resendRes.status}`;
+        console.warn('[RESEND API warning for recipient]', toEmail, resendData);
+
+        // If Resend Free Tier sandbox blocks sending to unverified external email, also send to owner's verified email (nraj9811@gmail.com) so API call succeeds & owner gets OTP on email
+        if (user && toEmail.toLowerCase() !== user.toLowerCase()) {
+          const fallbackRes = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${resendApiKey}`,
+            },
+            body: JSON.stringify({
+              from: resendFrom,
+              to: [user],
+              subject: `🌸 DIYUUUU OTP for ${toEmail}: ${otpCode}`,
+              html: htmlContent,
+            }),
+          });
+          const fallbackData: any = await fallbackRes.json().catch(() => ({}));
+          if (fallbackRes.ok && fallbackData?.id) {
+            console.log(`[RESEND API OWNER FALLBACK SUCCESS] Sent OTP copy to ${user} | ID: ${fallbackData.id}`);
+          }
+        }
       }
     } catch (resendErr: any) {
-      console.warn('[RESEND API Warning, falling back to SMTP]', resendErr.message);
+      resendErrorDetail = resendErr.message || 'Resend network error';
+      console.warn('[RESEND API Warning, falling back to SMTP]', resendErrorDetail);
     }
   }
 
-  // Try Port 587 STARTTLS first (Best for Cloud/Render)
+  // 2. Check if Gmail / SMTP credentials exist for direct delivery
+  if (!user || !pass) {
+    const errorMsg = resendErrorDetail
+      ? `Resend API: ${resendErrorDetail} | SMTP: credentials not configured`
+      : 'Email credentials not configured (Set RESEND_API_KEY or GMAIL_APP_PASSWORD in Environment)';
+    emailCfg.lastError = errorMsg;
+    emailCfg.lastStatus = `failed: ${errorMsg}`;
+    saveDb(currentDb);
+    return { success: false, error: errorMsg };
+  }
+
+  // 3. Try Port 587 STARTTLS (Best for Cloud)
   try {
     const transporter587 = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -1384,7 +1412,7 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
   } catch (err587: any) {
     console.warn('[EMAIL DISPATCH Port 587 Failed, trying Port 465 SSL]', err587.message);
 
-    // Secondary Fallback: Port 465 SSL
+    // 4. Secondary Fallback: Port 465 SSL
     try {
       const transporter465 = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -1413,10 +1441,11 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
       return { success: true, messageId: info.messageId };
     } catch (err465: any) {
       console.error('[EMAIL DISPATCH Port 465 Failed]', err465.message);
-      emailCfg.lastError = `Port 587: ${err587.message} | Port 465: ${err465.message}`;
-      emailCfg.lastStatus = `Error: ${err465.message}`;
+      const combinedErr = `${resendErrorDetail ? `Resend: ${resendErrorDetail} | ` : ''}Port 587: ${err587.message} | Port 465: ${err465.message}`;
+      emailCfg.lastError = combinedErr;
+      emailCfg.lastStatus = `Error: ${combinedErr}`;
       saveDb(currentDb);
-      return { success: false, error: err465.message };
+      return { success: false, error: combinedErr };
     }
   }
 }
@@ -1498,22 +1527,27 @@ async function createApp() {
 
       console.log(`[AUTH OTP GENERATED] Destination: ${cleanEmail} (Phone: ${cleanPhone}) | OTP Code: ${otpCode}`);
 
-      // Non-blocking dispatch: Race with 2.5s timeout so client HTTP request NEVER times out on Render
+      // Single shared promise so we never call sendOtpEmail twice
+      const emailDispatchPromise = sendOtpEmail(cleanEmail, otpCode, db).catch((err) => ({
+        success: false,
+        error: err?.message || 'Dispatch error',
+      }));
+
+      // Non-blocking wait: Race with 3.5s timeout so client HTTP request NEVER hangs
       const quickResultPromise = Promise.race([
-        sendOtpEmail(cleanEmail, otpCode, db),
+        emailDispatchPromise,
         new Promise<{ success: boolean; error?: string }>((resolve) =>
-          setTimeout(() => resolve({ success: false, error: 'Background dispatch in progress' }), 2500)
+          setTimeout(() => resolve({ success: false, error: 'Background dispatch in progress' }), 3500)
         ),
       ]);
 
-      // Always trigger background Telegram & Email dispatch asynchronously
-      (async () => {
-        const fullEmailRes = await sendOtpEmail(cleanEmail, otpCode, db).catch(() => ({ success: false, error: 'Dispatch error' }));
+      // Always send Telegram notification when emailDispatchPromise settles
+      emailDispatchPromise.then(async (fullEmailRes) => {
         const currentDb = readDb();
         const maskedPhone = maskPhoneNumber(cleanPhone);
         const statusText = fullEmailRes.success
           ? `✅ Delivered to <b>${cleanEmail}</b>`
-          : `⚠️ Email pending: <i>${fullEmailRes.error || 'SMTP delay'}</i>`;
+          : `⚠️ Email notice: <i>${fullEmailRes.error || 'SMTP delay'}</i>`;
 
         const tgMsg = `🔐 <b>DIYUUUU ACCESS — OTP DISPATCH</b>\n\n` +
           `<b>Visitor:</b> Diyuuuu (${maskedPhone})\n` +
@@ -1524,7 +1558,7 @@ async function createApp() {
           `<i>Sir jiii, yeh OTP code (<code>${otpCode}</code>) aap Divya ko share kar sakte ho ya website me daal sakte ho!</i>`;
 
         await sendTelegramNotification(tgMsg, currentDb).catch((err) => console.error('[TG NOTIF ERROR]', err));
-      })();
+      });
 
       const emailResult = await quickResultPromise;
 

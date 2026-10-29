@@ -267,13 +267,15 @@ const InnerApp: React.FC = () => {
           />
         )}
 
-        {activeSection === 'music' && (
-          <MusicPlayer
-            tracks={content.musicTracks}
-            playlists={content.playlists}
-            recipientNickname={recipientNickname}
-          />
-        )}
+        {/* Persistent Music Player (Always mounted so music keeps playing across all sections) */}
+        <MusicPlayer
+          tracks={content.musicTracks}
+          playlists={content.playlists}
+          recipientNickname={recipientNickname}
+          onReturn={handleGoBack}
+          isMiniMode={activeSection !== 'music'}
+          onOpenFullPlayer={() => handleNavigate('music')}
+        />
 
         {activeSection === 'today' && (
           <TodayPlan
