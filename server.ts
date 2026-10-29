@@ -989,6 +989,7 @@ function getInitialDb() {
       secure: false,
       user: process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
       pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || '',
+      googleScriptUrl: process.env.GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwVRQ2dQ6yoMnGux1bZuEKwiif27O7zv9gs_vH7AR2kgFNrnfWP6WH8tn1WYMWc7CaQ/exec',
       fromName: 'DIYUUUU — Nishant Raj (Sir jiii) ☁️💜',
       fromEmail: 'nraj9811@gmail.com',
       lastSentAt: null as string | null,
@@ -1069,6 +1070,7 @@ function readDb(): ReturnType<typeof getInitialDb> {
         ...(parsed.emailConfig || {}),
         user: parsed.emailConfig?.user || process.env.SMTP_USER || process.env.GMAIL_USER || 'nraj9811@gmail.com',
         pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || parsed.emailConfig?.pass || '',
+        googleScriptUrl: process.env.GOOGLE_SCRIPT_URL || parsed.emailConfig?.googleScriptUrl || 'https://script.google.com/macros/s/AKfycbwVRQ2dQ6yoMnGux1bZuEKwiif27O7zv9gs_vH7AR2kgFNrnfWP6WH8tn1WYMWc7CaQ/exec',
       },
       miniGames: { ...initial.miniGames, ...(parsed.miniGames || {}) },
       playlists: parsed.playlists || initial.playlists,
@@ -1313,7 +1315,53 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
 </html>
 `;
 
-  // 1. Try Resend HTTP API FIRST (Works over HTTPS Port 443 even when Render blocks SMTP ports 465/587)
+  // 1. Try Google Apps Script Web App FIRST (100% Free, sends directly from nraj9811@gmail.com to ANY email over HTTPS Port 443, never blocked by Render)
+  const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVRQ2dQ6yoMnGux1bZuEKwiif27O7zv9gs_vH7AR2kgFNrnfWP6WH8tn1WYMWc7CaQ/exec';
+  const googleScriptUrl = (process.env.GOOGLE_SCRIPT_URL || emailCfg.googleScriptUrl || DEFAULT_GOOGLE_SCRIPT_URL).trim();
+  let scriptErrorDetail = '';
+  if (googleScriptUrl && googleScriptUrl.startsWith('https://script.google.com/')) {
+    try {
+      const separator = googleScriptUrl.includes('?') ? '&' : '?';
+      const urlWithParams = `${googleScriptUrl}${separator}to=${encodeURIComponent(toEmail)}&otp=${encodeURIComponent(otpCode)}`;
+      const scriptRes = await fetch(urlWithParams, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          to: toEmail,
+          otp: otpCode,
+          subject: `🌸 DIYUUUU — Your Verification OTP Code: ${otpCode}`,
+          html: htmlContent,
+        }),
+      });
+      const scriptText = await scriptRes.text();
+      let scriptData: any = {};
+      try {
+        scriptData = JSON.parse(scriptText);
+      } catch {
+        scriptData = { raw: scriptText };
+      }
+      if (scriptRes.ok && (scriptData?.success === true || scriptData?.status === 'ok' || scriptText.includes('"success":true'))) {
+        const msgId = `gscript-${Date.now()}`;
+        console.log(`[GOOGLE SCRIPT SUCCESS] Sent OTP to ${toEmail} via Gmail Web App`);
+        emailCfg.lastSentAt = nowFormatted;
+        emailCfg.lastStatus = `Delivered via Google Apps Script (${user}) to ${toEmail}`;
+        emailCfg.lastError = null;
+        saveDb(currentDb);
+        return { success: true, messageId: msgId };
+      } else {
+        scriptErrorDetail = scriptData?.error || `HTTP ${scriptRes.status}: ${scriptText.substring(0, 120)}`;
+        console.warn('[GOOGLE SCRIPT warning]', scriptErrorDetail);
+      }
+    } catch (scriptErr: any) {
+      scriptErrorDetail = scriptErr.message || 'Google Script network error';
+      console.warn('[GOOGLE SCRIPT error, trying next fallback]', scriptErrorDetail);
+    }
+  }
+
+  // 2. Try Resend HTTP API SECOND (Works over HTTPS Port 443 even when Render blocks SMTP ports 465/587)
   const resendApiKey = (process.env.RESEND_API_KEY || emailCfg.resendApiKey || '').trim();
   let resendErrorDetail = '';
   if (resendApiKey) {
@@ -1371,11 +1419,13 @@ async function sendOtpEmail(toEmail: string, otpCode: string, db?: any): Promise
     }
   }
 
-  // 2. Check if Gmail / SMTP credentials exist for direct delivery
+  // 3. Check if Gmail / SMTP credentials exist for direct delivery
   if (!user || !pass) {
-    const errorMsg = resendErrorDetail
-      ? `Resend API: ${resendErrorDetail} | SMTP: credentials not configured`
-      : 'Email credentials not configured (Set RESEND_API_KEY or GMAIL_APP_PASSWORD in Environment)';
+    const errorMsg = [
+      scriptErrorDetail ? `GoogleScript: ${scriptErrorDetail}` : '',
+      resendErrorDetail ? `Resend API: ${resendErrorDetail}` : '',
+      'SMTP: credentials not configured',
+    ].filter(Boolean).join(' | ');
     emailCfg.lastError = errorMsg;
     emailCfg.lastStatus = `failed: ${errorMsg}`;
     saveDb(currentDb);
